@@ -1,0 +1,18 @@
+[package]
+name = "drawlab-cli"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+publish.workspace = true
+
+[[bin]]
+name = "drawlab"
+path = "src/main.rs"
+
+[dependencies]
+drawlab-core = { path = "../drawlab-core" }
+serde_json.workspace = true
+clap = { version = "4.5", features = ["derive"] }
+
+[lints]
+workspace = true

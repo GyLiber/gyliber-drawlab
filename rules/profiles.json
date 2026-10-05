@@ -1,0 +1,10 @@
+[
+  {"id":"lab-6of58","version":"1","name":"Laboratory · 6 of 58 + remaining-pool bonus","pool":58,"pick":6,"extra":{"kind":"remaining"},"status":"laboratory","source":"Mathematical model; not a verified official game profile."},
+  {"id":"lab-6of52","version":"1","name":"Laboratory · 6 of 52 + remaining-pool bonus","pool":52,"pick":6,"extra":{"kind":"remaining"},"status":"laboratory","source":"Mathematical model; not a verified official game profile."},
+  {"id":"lab-5of50-20","version":"1","name":"Laboratory · 5 of 50 + independent 1 of 20","pool":50,"pick":5,"extra":{"kind":"independent","pool":20},"status":"laboratory","source":"Mathematical model; not a verified official game profile."},
+  {"id":"lab-5of50-16","version":"1","name":"Laboratory · 5 of 50 + independent 1 of 16","pool":50,"pick":5,"extra":{"kind":"independent","pool":16},"status":"laboratory","source":"Mathematical model; not a verified official game profile."},
+  {"id":"lab-5of36","version":"1","name":"Laboratory · 5 of 36","pool":36,"pick":5,"extra":{"kind":"none"},"status":"laboratory","source":"Mathematical model; not a verified official game profile."},
+  {"id":"ithuba-lotto-2025","version":"candidate-1","name":"ITHUBA LOTTO / PLUS 1 / PLUS 2 · 2025 candidate","pool":58,"pick":6,"extra":{"kind":"remaining"},"status":"unverified","source":"https://content.nationallottery.co.za/images/docs/LOTTO_Game_Rules%26Regulations_10Oct25.pdf"},
+  {"id":"ithuba-powerball-2025","version":"candidate-1","name":"ITHUBA PowerBall / PLUS · 2025 candidate","pool":50,"pick":5,"extra":{"kind":"independent","pool":20},"status":"unverified","source":"https://content.nationallottery.co.za/images/docs/PowerBall_Game_Rules%26Regulations_10Oct25.pdf"},
+  {"id":"ithuba-daily-2025","version":"candidate-1","name":"ITHUBA DAILY LOTTO / PLUS · 2025 candidate","pool":36,"pick":5,"extra":{"kind":"none"},"status":"unverified","source":"https://content.nationallottery.co.za/images/docs/DAILY_LOTTO_DAILY_LOTTO_PLUS_RULE_AND_REGULATIONS_21Sep25.pdf"}
+]
