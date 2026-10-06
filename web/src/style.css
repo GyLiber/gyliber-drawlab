@@ -346,6 +346,7 @@ input[type="file"] {
   font-size: 0.8rem;
 }
 input::file-selector-button {
+  color: #10251c;
   background: #d7e1e8;
   border: 0;
   border-radius: 4px;

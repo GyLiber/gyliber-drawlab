@@ -35,7 +35,9 @@ jobs:
           target/debug/drawlab generate --profile lab-5of36 --boards 2 > /tmp/drawlab-demo.json
           target/debug/drawlab verify /tmp/drawlab-demo.json
       - name: Install locked browser dependencies
-        run: npm --prefix web ci --ignore-scripts
+        run: |
+          npm --prefix web ci --ignore-scripts
+          npm --prefix web run format:check
       - name: Build static application
         run: |
           cargo install wasm-bindgen-cli --version 0.2.104 --locked
