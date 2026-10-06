@@ -1,0 +1,77 @@
+name: CI
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  verify:
+    name: Core and browser verification
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38 # v6
+        with:
+          node-version: '24.19.0'
+          cache: npm
+          cache-dependency-path: web/package-lock.json
+      - name: Install pinned Rust toolchain
+        run: rustup toolchain install 1.98.1 --profile minimal --component rustfmt,clippy --target wasm32-unknown-unknown
+      - name: Rust formatting and lint
+        run: |
+          cargo fmt --all -- --check
+          cargo clippy --workspace --all-targets --locked -- -D warnings
+      - name: Rust tests and native demonstration
+        run: |
+          cargo test --workspace --locked
+          cargo build -p drawlab-cli --locked
+          target/debug/drawlab generate --profile lab-5of36 --boards 2 > /tmp/drawlab-demo.json
+          target/debug/drawlab verify /tmp/drawlab-demo.json
+      - name: Install locked browser dependencies
+        run: npm --prefix web ci --ignore-scripts
+      - name: Build static application
+        run: |
+          cargo install wasm-bindgen-cli --version 0.2.104 --locked
+          bash scripts/build-web.sh
+      - name: Browser verification
+        working-directory: web
+        run: |
+          npx playwright install --with-deps chromium
+          npm test
+      - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7
+        if: success()
+        with:
+          name: drawlab-static-preview
+          path: web/dist/
+          if-no-files-found: error
+          retention-days: 14
+      - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7
+        if: always()
+        with:
+          name: drawlab-verification
+          path: test-results/
+          if-no-files-found: ignore
+          retention-days: 14
+  audit:
+    name: Dependency advisory audit
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38 # v6
+        with:
+          node-version: '24.19.0'
+      - run: rustup toolchain install 1.98.1 --profile minimal
+      - run: cargo install cargo-audit --version 0.22.2 --locked
+      - run: cargo audit
+      - run: npm --prefix web ci --ignore-scripts
+      - run: npm --prefix web audit --audit-level=high
