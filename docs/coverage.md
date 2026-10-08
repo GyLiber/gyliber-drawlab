@@ -1,6 +1,6 @@
 # Coverage and authoritative-rule evidence
 
-As of 2026-10-05. This preview does not claim current official-game accuracy.
+As of 2026-10-08. This preview does not claim current official-game accuracy.
 The five lab profiles are mathematical definitions, not operator rule claims.
 
 | Family | Registry state | Reason / next requirement |
@@ -34,13 +34,19 @@ returned 403, 502 or timeout. Do not mark an indexed excerpt as full verificatio
 No source digest is invented, and copyrighted manuals are not redistributed here.
 The dates embedded in filenames are edition clues, not proven effective dates.
 
-## Owner action to unblock official coverage
+## Secure source recovery
 
-Download the three 2025 rule PDFs from the above official links, if accessible in
-your browser, and supply them privately to the development session. Do not upload
-account screens, tickets, personal data or credentials. If the links fail for you
-too, obtain applicable rule documents from the operator. Current rules require
-their own documents and profile IDs.
+On 2026-10-08 the owner reported Firefox refused a secure connection for all
+three content.nationallottery.co.za PDFs, warning about old server software.
+This is a reported browser observation, not an independently diagnosed server
+vulnerability. Do not bypass the warning, weaken TLS verification or use HTTP.
+The previous instruction to download these three links is suspended; no repeated
+manual retry is requested. See [source recovery evidence](verification/SOURCE-RECOVERY-2026-10-08.md).
+
+Full applicable rules remain required. A future batch may obtain them through
+a working authoritative HTTPS publication or documents supplied by the operator
+or regulator. Current rules require their own documents and profile IDs.
+Do not upload account screens, tickets, personal data or credentials.
 
 Then extract only necessary facts with exact page/section references, record the
 source digest and applicability, implement separate selection/draw/add-on models,

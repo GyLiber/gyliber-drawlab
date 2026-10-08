@@ -23,10 +23,31 @@ publish credentials, customer data, private source documents or production logs.
 
 ## Owner settings
 
-After CI check names exist, enable a ruleset for main requiring PRs, passing CI,
-resolved review conversations and no force pushes/deletion. Require independent
-approval once a second maintainer exists. Enable private vulnerability reporting
-and account MFA. These settings are not enforced merely by committing this file.
+On 2026-10-08 the GitHub ruleset API verified active main-protection (24749025),
+targeting refs/heads/main with no bypass actors. It requires PRs, resolved review
+threads, up-to-date branches and the GitHub Actions checks Core and browser
+verification and Dependency advisory audit. Deletion and force pushes are blocked.
+Required approvals are zero while there is only one maintainer; require an
+independent approval once a second maintainer exists. This does not establish
+independent review. The owner reported private vulnerability reporting and account
+protection completed; those account/security settings were not independently read.
+Recheck actual settings when resuming; documentation alone does not enforce them.
+
+## Checkpointed batch protocol
+
+Choose one coherent reviewable packet, normally 1-4 related Conventional Commits.
+Respect the owner's session time limit; reserve time for verification and handoff.
+Complete the packet, run relevant checks and fix failures within that same scope.
+Push the work to GitHub and record the branch, exact head SHA, changed behavior,
+observed checks and remaining blockers. Never describe pending checks as passed.
+Update the remaining next steps before returning control to the owner.
+
+Stop after the checkpoint. Start the next packet only when Gyile says continue.
+Do not silently expand the batch into integration, publication or another feature.
+If blocked, preserve completed work and give the precise manual action or decision
+needed. A UI interruption is recovered by reading the remote head, working-tree
+state and checkpoint; never assume the previous write failed or repeat it blindly.
+Use [NEXT-STEPS](../NEXT-STEPS.md) as the continuation entry point.
 
 ## Client acceptance for every minor release
 
