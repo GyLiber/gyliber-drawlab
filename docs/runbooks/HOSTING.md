@@ -1,8 +1,10 @@
 # Hosted laboratory preview: Render
 
-Target: 0.1.0-alpha.2. The first Render builds failed on read-only
-system Rust directories; the local-toolchain fix requires a successful CI,
-redeploy and live acceptance before the preview may be called deployed.
+Target: 0.1.0-alpha.2. Render reports the preview live as of 2026-10-09,
+service `srv-db47psm0tbcc73dep2vg`, deployed commit `0a970a0`.
+The provider build and CI passed. Direct public HTTPS/header checks and
+live-browser/client acceptance have not been independently completed.
+See `docs/verification/HOSTED-PREVIEW-2026-10-09.md`.
 Client outcome: browser generation without installing Rust. Official games remain
 disabled; this is not the completed official-game minor release.
 
@@ -34,7 +36,7 @@ unsafe-eval/unsafe-inline permission. No SPA rewrite: missing assets must fail.
 No-cache requires revalidation so old HTML/build identity does not mask updates.
 Render provides HTTPS; verify it at acceptance.
 
-## Owner setup
+## Initial owner setup (completed 2026-10-09)
 
 The connected Render creation tool cannot set the full response-header policy.
 Use the version-controlled Blueprint. After render.yaml is merged to main and
