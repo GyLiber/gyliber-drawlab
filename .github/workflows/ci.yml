@@ -39,11 +39,15 @@ jobs:
           npm --prefix web ci --ignore-scripts
           npm --prefix web run format:check
       - name: Build static application
-        # Regression: provider-supplied Rust homes may be unwritable.
+        # Regression: inherited Rust homes may be unwritable and rustup shims
+        # outside the checkout may themselves be on read-only filesystems.
         env:
           RUSTUP_HOME: /proc/drawlab-unwritable-rustup
           CARGO_HOME: /proc/drawlab-unwritable-cargo
-        run: bash scripts/build-render.sh
+        run: |
+          bash scripts/build-render.sh
+          test -x .drawlab-build/cargo/bin/rustup
+          test -x .drawlab-build/cargo/bin/cargo
       - name: Browser verification
         working-directory: web
         run: |
