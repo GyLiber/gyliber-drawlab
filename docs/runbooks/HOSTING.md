@@ -18,6 +18,11 @@ remain supply-chain trust boundaries. CI runs the same build script, but provide
 bootstrap and CDN behavior require live verification. No reproducibility or
 independent certification claim is made.
 
+Mutable Rust homes are explicitly relocated to .drawlab-build/rustup and
+.drawlab-build/cargo inside the writable checkout. The directory is ignored by
+Git. This avoids the read-only /usr/local/rustup inherited on Render's static
+builder. CI deliberately supplies unwritable inherited homes to cover this fault.
+
 Headers restrict scripts, connections and frames, disable MIME sniffing/referrers
 and unnecessary device permissions. WASM compilation uses wasm-unsafe-eval; no
 unsafe-eval/unsafe-inline permission. No SPA rewrite: missing assets must fail.
