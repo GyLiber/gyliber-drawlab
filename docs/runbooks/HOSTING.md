@@ -1,6 +1,8 @@
 # Hosted laboratory preview: Render
 
-Target: 0.1.0-alpha.2. Configuration prepared; live deployment is not yet verified.
+Target: 0.1.0-alpha.2. The first Render builds failed on read-only
+system Rust directories; the local-toolchain fix requires a successful CI,
+redeploy and live acceptance before the preview may be called deployed.
 Client outcome: browser generation without installing Rust. Official games remain
 disabled; this is not the completed official-game minor release.
 
@@ -20,8 +22,11 @@ independent certification claim is made.
 
 Mutable Rust homes are explicitly relocated to .drawlab-build/rustup and
 .drawlab-build/cargo inside the writable checkout. The directory is ignored by
-Git. This avoids the read-only /usr/local/rustup inherited on Render's static
-builder. CI deliberately supplies unwritable inherited homes to cover this fault.
+Git. The build installs its own rustup and proxy executables into this local
+Cargo bin directory even when Render preinstalls rustup. Moving RUSTUP_HOME
+alone is insufficient: the system rustup binary tries to update sibling proxies
+in read-only /usr/local/cargo/bin. CI deliberately supplies unwritable inherited
+homes and verifies the local Rust executables exist after the build.
 
 Headers restrict scripts, connections and frames, disable MIME sniffing/referrers
 and unnecessary device permissions. WASM compilation uses wasm-unsafe-eval; no
