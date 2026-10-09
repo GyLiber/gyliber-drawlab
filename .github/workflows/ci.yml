@@ -39,9 +39,7 @@ jobs:
           npm --prefix web ci --ignore-scripts
           npm --prefix web run format:check
       - name: Build static application
-        run: |
-          cargo install wasm-bindgen-cli --version 0.2.104 --locked
-          bash scripts/build-web.sh
+        run: bash scripts/build-render.sh
       - name: Browser verification
         working-directory: web
         run: |

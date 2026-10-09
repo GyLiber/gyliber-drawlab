@@ -34,13 +34,16 @@ randomness, time of generation or absence of editing. Valid edited numbers can
 pass. There are no signatures, transparent draw log or reproducible-build claim.
 
 The meta CSP cannot enforce frame-ancestors or every security header. Production
-hosting needs an additional header/HTTPS review. Development Vite HMR may be
+hosting needs an additional header/HTTPS review. The alpha.2 Render Blueprint
+provides response headers including frame-ancestors; verify actual CDN responses
+after owner setup using runbooks/HOSTING.md. Development Vite HMR may be
 restricted by the strict policy; production preview is the verified demo route.
 No public hosting has been configured by committing a static application.
 
 ## Release and incident boundaries
 
-The owner must enable main protections and private vulnerability reporting.
+Main protections were verified on 2026-10-08; the owner reported private
+vulnerability reporting and account protection complete. Recheck on resumption.
 CODEOWNERS is descriptive without those controls. Branch access is not production
 access. Revoke unused app grants and use MFA; never send credentials to an agent.
 

@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.1.0-alpha.2 — hosting preparation
+
+- Render static-site Blueprint with response security headers and manual deploys.
+- Shared CI/provider build script and public version/commit build identity.
+- Browser test checks identity against the engine and checkout.
+- Owner deployment and live acceptance runbook; deployment awaits setup.
+- Records remain version-specific: alpha.1 exports need alpha.1's verifier.
+- No official-game enablement, live-hosting claim or stable release tag.
+
 ## 0.1.0-alpha.1 — implementation preview
 
 ### Added

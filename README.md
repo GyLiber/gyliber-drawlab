@@ -3,7 +3,7 @@
 A mathematical lottery laboratory for **Gyile / GyLiber**.
 Unbiased generation, exact combinatorics, inspectable records.
 
-**Version: 0.1.0-alpha.1 — laboratory preview, not stable 0.1.0.**
+**Version: 0.1.0-alpha.2 — laboratory preview, not stable 0.1.0.**
 No official game profile is enabled. This tool does not sell tickets, publish
 official results, predict draws or promise winnings.
 
@@ -53,7 +53,9 @@ downloads need internet. Generated selections never leave the browser.
 
 Open http://127.0.0.1:4173. Use production preview for the tested CSP behavior.
 Do not open index.html through file://. No account, database, VM or paid service
-is needed. No public deployment is configured automatically.
+is needed. [Render hosting setup](docs/runbooks/HOSTING.md) is prepared;
+no live URL is verified yet. Exported records require their matching version's
+verifier; alpha.1 records are not accepted by alpha.2.
 
 ## Verification
 

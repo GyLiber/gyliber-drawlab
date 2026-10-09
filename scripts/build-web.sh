@@ -8,3 +8,4 @@ fi
 cargo build -p drawlab-wasm --target wasm32-unknown-unknown --release --locked
 wasm-bindgen target/wasm32-unknown-unknown/release/drawlab_wasm.wasm --target web --out-dir web/pkg
 npm --prefix web run build
+node scripts/build-info.mjs
