@@ -1,13 +1,16 @@
 # Changelog
 
-## 0.1.0-alpha.2 — hosting preparation
+## 0.1.0-alpha.2 — hosted laboratory preview
 
 - Render static-site Blueprint with response security headers and manual deploys.
 - Shared CI/provider build script and public version/commit build identity.
 - Browser test checks identity against the engine and checkout.
-- Owner deployment and live acceptance runbook; deployment awaits setup.
+- Render reported the built static preview live on 2026-10-09 at commit `0a970a0`;
+  direct public HTTP/header checks and client live-browser acceptance remain outstanding.
+- Isolated writable Rustup/Cargo binaries to support Render's read-only system toolchains.
 - Records remain version-specific: alpha.1 exports need alpha.1's verifier.
-- No official-game enablement, live-hosting claim or stable release tag.
+- No official-game enablement, independent security certification or stable release tag.
+- See `docs/verification/HOSTED-PREVIEW-2026-10-09.md` for deployment evidence and limits.
 
 ## 0.1.0-alpha.1 — implementation preview
 
