@@ -2,9 +2,11 @@
 
 Updated 2026-10-09. Client: Gyile / GyLiber.
 Current software: 0.1.0-alpha.2 laboratory preview, not complete official-game 0.1.0.
-Working branch: feat/drawlab-foundation. Review: https://github.com/GyLiber/gyliber-drawlab/pull/1
-Latest checkpoint: the commit containing this update; exact remote SHA is in the
-chat handoff and Git history. Never import branch/version markers from another repo.
+Deployment record: docs/verification/HOSTED-PREVIEW-2026-10-09.md.
+Render reports https://gyliber-drawlab.onrender.com live at commit 0a970a0.
+Release-fix review: https://github.com/GyLiber/gyliber-drawlab/pull/8 (merged).
+No current feature branch is designated here; inspect main and open PRs on resumption.
+Never import branch/version markers from another repo.
 
 ## Resume safely
 
@@ -18,15 +20,15 @@ chat handoff and Git history. Never import branch/version markers from another r
 
 ## Next packet: hosted preview acceptance
 
-The owner requested a useful live delivery. Hosting preparation is in render.yaml
-and runbooks/HOSTING.md; no live URL is verified. Finish current-head CI and merge
-PR #1 through the required gates, preserving its logical commits. Then the owner
-applies the Render Blueprint from main; the connected creation tool cannot set
-the complete response-header policy. No paid compute or secrets are required.
-On return with the URL, verify deployment identity, HTTPS/headers and browser
-generation/export/import before recording it as live. Stop at that checkpoint.
-The working laboratory preview can be hosted while official rule evidence is
-blocked. This does not satisfy complete official-game 0.1.0 acceptance.
+Render reports the static preview live, with exact deployed SHA and successful
+GitHub CI recorded in verification/HOSTED-PREVIEW-2026-10-09.md. There is no
+need to recreate the service or redeploy the same commit. Complete only the
+unverified public-facing checks: GET / and /build-info.json over HTTPS, response
+security headers from render.yaml, successful live WASM load and the actual
+generate/export/import/invalid-record browser demonstration. Have the owner
+accept or report the specific failed step. Only then mark hosted-preview client
+acceptance complete. A provider-reported live status is not equivalent to
+successful human/browser acceptance. Do not label this stable 0.1.0.
 
 ## Following packet: authoritative rule acquisition and extraction
 
@@ -60,5 +62,7 @@ draw behavior and PLUS relationships. Clearly mark unresolved clauses.
 Main ruleset was independently verified active on 2026-10-08. Vulnerability
 reporting and account protection were reported complete by the owner. See
 verification/SOURCE-RECOVERY-2026-10-08.md for evidence boundaries.
-The immediate blocker is authoritative full game-rule evidence, not compute
-capacity, a paid VM or an API account. Preserve the working laboratory preview.
+The stable 0.1.0 blocker is authoritative full game-rule evidence (plus
+conformance/review/acceptance), not compute capacity or an API account.
+The immediate alpha.2 finishing gate is public HTTP/browser acceptance.
+Preserve the working laboratory preview.
