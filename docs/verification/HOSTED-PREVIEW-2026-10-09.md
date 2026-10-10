@@ -2,6 +2,11 @@
 
 Date: 2026-10-09 (UTC); client: Gyile / GyLiber.
 
+Follow-up: [2026-10-10 live browser verification](LIVE-BROWSER-2026-10-10.md)
+completed the scoped public HTTP/header and desktop interaction checks below.
+This historical record describes what was known on 2026-10-09; client acceptance
+is still outstanding.
+
 ## Delivery identity
 
 - Product: mathematical laboratory preview `0.1.0-alpha.2`, **not** stable `0.1.0` or verified official ITHUBA game coverage.

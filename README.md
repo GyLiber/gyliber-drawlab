@@ -55,7 +55,9 @@ Open http://127.0.0.1:4173. Use production preview for the tested CSP behavior.
 Do not open index.html through file://. No account, database, VM or paid service
 is needed. The [Render-hosted laboratory preview](https://gyliber-drawlab.onrender.com)
 was reported live by Render on 2026-10-09 at deployed commit `0a970a0`.
-Direct external HTTP checks and client live-browser acceptance remain outstanding.
+HTTPS/header and scoped desktop browser checks passed on 2026-10-10; see the
+[live verification record](docs/verification/LIVE-BROWSER-2026-10-10.md).
+Client acceptance remains outstanding.
 See [hosting](docs/runbooks/HOSTING.md) and [observed deployment evidence](docs/verification/HOSTED-PREVIEW-2026-10-09.md). Exported records require their matching version's
 verifier; alpha.1 records are not accepted by alpha.2.
 
