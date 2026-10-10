@@ -2,8 +2,9 @@
 
 Target: 0.1.0-alpha.2. Render reports the preview live as of 2026-10-09,
 service `srv-db47psm0tbcc73dep2vg`, deployed commit `0a970a0`.
-The provider build and CI passed. Direct public HTTPS/header checks and
-live-browser/client acceptance have not been independently completed.
+The provider build and CI passed. Direct HTTPS/header and scoped live desktop
+browser checks passed on 2026-10-10; see ../verification/LIVE-BROWSER-2026-10-10.md.
+Client acceptance and live mobile verification remain outstanding.
 See `docs/verification/HOSTED-PREVIEW-2026-10-09.md`.
 Client outcome: browser generation without installing Rust. Official games remain
 disabled; this is not the completed official-game minor release.

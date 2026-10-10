@@ -1,6 +1,6 @@
 # DrawLab remaining work and resumption
 
-Updated 2026-10-09. Client: Gyile / GyLiber.
+Updated 2026-10-10. Client: Gyile / GyLiber.
 Current software: 0.1.0-alpha.2 laboratory preview, not complete official-game 0.1.0.
 Deployment record: docs/verification/HOSTED-PREVIEW-2026-10-09.md.
 Render reports https://gyliber-drawlab.onrender.com live at commit 0a970a0.
@@ -18,17 +18,18 @@ Never import branch/version markers from another repo.
 4. Select one packet below, finish its verification and record the next checkpoint.
 5. Stop; wait for continue before beginning another packet.
 
-## Next packet: hosted preview acceptance
+## Next boundary: client review of the hosted preview
 
 Render reports the static preview live, with exact deployed SHA and successful
 GitHub CI recorded in verification/HOSTED-PREVIEW-2026-10-09.md. There is no
-need to recreate the service or redeploy the same commit. Complete only the
-unverified public-facing checks: GET / and /build-info.json over HTTPS, response
-security headers from render.yaml, successful live WASM load and the actual
-generate/export/import/invalid-record browser demonstration. Have the owner
-accept or report the specific failed step. Only then mark hosted-preview client
-acceptance complete. A provider-reported live status is not equivalent to
-successful human/browser acceptance. Do not label this stable 0.1.0.
+need to recreate the service or redeploy the same commit. Public HTTPS, exact
+build identity, response security headers, live engine load and desktop
+generate/export/import/invalid-record checks passed on 2026-10-10; see
+verification/LIVE-BROWSER-2026-10-10.md for the tested models and limits.
+Gyile now reviews the preview and accepts it or reports a specific defect.
+Live mobile acceptance has not been run; prior automated mobile checks are
+separate evidence. Do not equate developer smoke tests with client acceptance
+or label this stable 0.1.0. Stop at each completed batch checkpoint.
 
 ## Following packet: authoritative rule acquisition and extraction
 
@@ -64,5 +65,7 @@ reporting and account protection were reported complete by the owner. See
 verification/SOURCE-RECOVERY-2026-10-08.md for evidence boundaries.
 The stable 0.1.0 blocker is authoritative full game-rule evidence (plus
 conformance/review/acceptance), not compute capacity or an API account.
-The immediate alpha.2 finishing gate is public HTTP/browser acceptance.
+The immediate alpha.2 finishing gate is client acceptance; scoped desktop
+HTTP/browser verification is complete. Avoid repeating passed checks without
+a changed deployment or specific remaining risk.
 Preserve the working laboratory preview.
