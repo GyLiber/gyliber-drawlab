@@ -129,3 +129,49 @@ test("mobile layout and keyboard generation remain usable", async ({
     fullPage: true,
   });
 });
+
+test("match explorer preserves exact counts and excludes extra-ball events", async ({
+  page,
+}) => {
+  await page.goto("/");
+  await expect(page.locator("#generate")).toBeEnabled();
+  const rows = page.locator("#match-rows tr");
+  await expect(rows).toHaveCount(6);
+  // Independent combinatorial reference counts for a fixed 5-of-36 selection.
+  const counts = ["169911", "157325", "44950", "4650", "155", "1"];
+  for (let r = 0; r < counts.length; r++) {
+    await expect(rows.nth(r).locator("th")).toHaveText(String(r));
+    await expect(rows.nth(r).locator("td").first()).toHaveText(
+      counts[r] + " / 376992",
+    );
+  }
+  await expect(page.locator("#match-total")).toHaveText(
+    "Exact total: 376992 / 376992 = 1",
+  );
+  await page.locator("#profile").selectOption("lab-5of50-20");
+  const independent20 = await rows.allTextContents();
+  await expect(rows.last()).toContainText("1 / 2118760");
+  await expect(rows.last()).toContainText("<0.0001%");
+  await page.locator("#profile").selectOption("lab-5of50-16");
+  expect(await rows.allTextContents()).toEqual(independent20);
+  await page.locator('input[value="draw"]').check();
+  await page.locator("#count").fill("100");
+  expect(await rows.allTextContents()).toEqual(independent20);
+  await page.locator("#profile").selectOption("lab-6of58");
+  await expect(rows).toHaveCount(7);
+  await expect(rows.last()).toContainText("1 / 40475358");
+  await expect(page.locator("#match-caption")).toHaveText(
+    "Main matches: 6 of 58",
+  );
+  await page.setViewportSize({ width: 390, height: 844 });
+  expect(
+    await page.evaluate(
+      () => document.documentElement.scrollWidth <= innerWidth,
+    ),
+  ).toBe(true);
+  await page.locator("#match-heading").scrollIntoViewIfNeeded();
+  await page.screenshot({
+    path: "../test-results/screenshots/match-explorer-mobile.png",
+    fullPage: true,
+  });
+});

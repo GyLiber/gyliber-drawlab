@@ -4,6 +4,7 @@ import init, {
   generate_json,
   verify_json,
   odds_json,
+  match_distribution_json,
   version,
 } from "../pkg/drawlab_wasm.js";
 
@@ -47,10 +48,59 @@ function clearOutput() {
   for (const id of ["download-json", "download-text", "download-csv"])
     el<HTMLButtonElement>(id).disabled = true;
 }
+type MatchProbability = {
+  matches: number;
+  numerator: string;
+  denominator: string;
+};
+function renderDistribution(p: Profile) {
+  const rows = JSON.parse(match_distribution_json(p.id)) as MatchProbability[];
+  const first = rows[0];
+  if (!first) throw new Error("Empty match distribution");
+  const fragment = document.createDocumentFragment();
+  for (const row of rows) {
+    const tr = document.createElement("tr");
+    const heading = document.createElement("th");
+    heading.scope = "row";
+    heading.textContent = String(row.matches);
+    const fraction = document.createElement("td");
+    fraction.textContent = row.numerator + " / " + row.denominator;
+    const chance = document.createElement("td");
+    // Only the visual approximation uses floating point. Exact counts stay strings.
+    const probability = Number(row.numerator) / Number(row.denominator);
+    const meter = document.createElement("meter");
+    meter.min = 0;
+    meter.max = 1;
+    meter.value = probability;
+    meter.setAttribute(
+      "aria-label",
+      "Probability of exactly " + row.matches + " main matches",
+    );
+    const percentage = document.createElement("span");
+    percentage.textContent =
+      probability === 0
+        ? "0%"
+        : probability * 100 < 0.0001
+          ? "<0.0001%"
+          : (probability * 100).toFixed(4) + "%";
+    chance.append(meter, percentage);
+    tr.append(heading, fraction, chance);
+    fragment.append(tr);
+  }
+  el("match-rows").replaceChildren(fragment);
+  el("match-caption").textContent = "Main matches: " + p.pick + " of " + p.pool;
+  el("match-total").textContent =
+    "Exact total: " +
+    rows.reduce((sum, row) => sum + BigInt(row.numerator), 0n) +
+    " / " +
+    first.denominator +
+    " = 1";
+}
 function refresh() {
   clearOutput();
   const p = profiles.find((p) => p.id === select.value);
   if (!p) return;
+  renderDistribution(p);
   const o = JSON.parse(odds_json(p.id)) as { denominator: string };
   el("odds").textContent =
     "1 in " + BigInt(o.denominator).toLocaleString("en-ZA");

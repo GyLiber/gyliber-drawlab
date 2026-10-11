@@ -64,6 +64,24 @@ pub fn match_distribution(p: &Profile) -> Result<Vec<MatchProbability>, Error> {
 mod tests {
     use super::*;
     #[test]
+    fn five_of_36_match_reference_counts_and_disabled_profiles() {
+        let profiles = crate::profiles().unwrap();
+        let p = profiles.iter().find(|p| p.id == "lab-5of36").unwrap();
+        let rows = match_distribution(p).unwrap();
+        let expected = [169_911u64, 157_325, 44_950, 4_650, 155, 1];
+        for (r, (row, count)) in rows.iter().zip(expected).enumerate() {
+            assert_eq!(usize::from(row.matches), r);
+            assert_eq!(row.numerator, count.to_string());
+            assert_eq!(row.denominator, "376992");
+        }
+        for p in profiles
+            .iter()
+            .filter(|p| p.status == crate::Status::Unverified)
+        {
+            assert!(match_distribution(p).is_err());
+        }
+    }
+    #[test]
     fn exact_reference_counts_and_distribution_normalization() {
         for (n, k, v) in [
             (58, 6, 40_475_358),

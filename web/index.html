@@ -116,6 +116,55 @@
             </details>
           </section>
         </div>
+        <section class="panel match-explorer" aria-labelledby="match-heading">
+          <p class="eyebrow">EXPLORE / EXACT MATHEMATICS</p>
+          <h2 id="match-heading">How many main numbers might match?</h2>
+          <p>
+            For one fixed selection compared with one independent uniform draw
+            from the selected model. Change the mathematical model above to
+            compare.
+          </p>
+          <p class="hint">
+            Main numbers only: bonus and independent extra balls are excluded.
+            This is not a prize table or a prediction. Board count and operation
+            do not change this distribution.
+          </p>
+          <div
+            class="match-table-wrap"
+            role="region"
+            aria-label="Main-match probabilities"
+            tabindex="0"
+          >
+            <table class="match-table">
+              <caption id="match-caption">
+                Waiting for the mathematical engine.
+              </caption>
+              <thead>
+                <tr>
+                  <th scope="col">Exact matches</th>
+                  <th scope="col">Exact probability</th>
+                  <th scope="col">Approximate chance</th>
+                </tr>
+              </thead>
+              <tbody id="match-rows"></tbody>
+            </table>
+          </div>
+          <p id="match-total" class="hint"></p>
+          <details>
+            <summary>Why these probabilities?</summary>
+            <p>
+              For a pool of n numbers, a selection of k numbers and exactly r
+              matches: P(R = r) = C(k,r) × C(n−k,k−r) / C(n,k).
+            </p>
+            <p>
+              Choose r numbers from the selection and k−r from outside it.
+              C(a,b) counts unordered ways to choose b distinct items from a.
+              The rows cover every possible main-match count, so their exact
+              probabilities sum to 1. Fractions are exact and unreduced;
+              percentages are rounded to four decimal places.
+            </p>
+          </details>
+        </section>
         <div class="lower-grid">
           <section class="panel">
             <p class="eyebrow">03 / VERIFY</p>

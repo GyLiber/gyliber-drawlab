@@ -3,7 +3,8 @@
 A mathematical lottery laboratory for **Gyile / GyLiber**.
 Unbiased generation, exact combinatorics, inspectable records.
 
-**Version: 0.1.0-alpha.2 — laboratory preview, not stable 0.1.0.**
+**Candidate version: 0.1.0-alpha.3 — laboratory preview, not stable 0.1.0.**
+The hosted site remains alpha.2 until the candidate passes deployment verification.
 No official game profile is enabled. This tool does not sell tickets, publish
 official results, predict draws or promise winnings.
 
@@ -14,6 +15,7 @@ official results, predict draws or promise winnings.
 - Separate selection and simulated-draw modes; correct bonus-pool distinctions.
 - Fresh OS/Web Crypto randomness, unbiased bounded sampling, no insecure fallback.
 - 1–100 independent boards, exact match probabilities and CLI main-match tables.
+- Browser main-match explorer: exact fractions, visual probabilities and a counting explanation.
 - JSON records with model digests; CLI/browser validation; browser text/CSV export.
 - Visible, disabled ITHUBA candidates until full official rules are verified.
 
@@ -57,9 +59,10 @@ is needed. The [Render-hosted laboratory preview](https://gyliber-drawlab.onrend
 was reported live by Render on 2026-10-09 at deployed commit `0a970a0`.
 HTTPS/header and scoped desktop browser checks passed on 2026-10-10; see the
 [live verification record](docs/verification/LIVE-BROWSER-2026-10-10.md).
-Client acceptance remains outstanding.
+Client acceptance remains outstanding. The alpha.3 candidate adds the
+[match explorer](docs/client/MATCH-EXPLORER-ALPHA-3.md); this is not yet a live-deployment claim.
 See [hosting](docs/runbooks/HOSTING.md) and [observed deployment evidence](docs/verification/HOSTED-PREVIEW-2026-10-09.md). Exported records require their matching version's
-verifier; alpha.1 records are not accepted by alpha.2.
+verifier; alpha.1 records are not accepted by alpha.2; alpha.3 likewise requires alpha.3 records.
 
 ## Verification
 
