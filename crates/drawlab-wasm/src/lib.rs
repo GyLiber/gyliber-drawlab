@@ -40,3 +40,15 @@ pub fn odds_json(id: &str) -> Result<String, JsValue> {
 pub fn version() -> String {
     drawlab_core::VERSION.into()
 }
+
+/// Exact main-number match distribution; excludes bonus and independent extras.
+#[wasm_bindgen]
+pub fn match_distribution_json(id: &str) -> Result<String, JsValue> {
+    let p = drawlab_core::profiles()
+        .map_err(js_error)?
+        .into_iter()
+        .find(|p| p.id == id)
+        .ok_or_else(|| js_error("UNKNOWN_PROFILE"))?;
+    serde_json::to_string(&drawlab_core::match_distribution(&p).map_err(js_error)?)
+        .map_err(js_error)
+}
