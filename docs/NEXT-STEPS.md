@@ -31,6 +31,16 @@ Live mobile acceptance has not been run; prior automated mobile checks are
 separate evidence. Do not equate developer smoke tests with client acceptance
 or label this stable 0.1.0. Stop at each completed batch checkpoint.
 
+## Client meeting and source request packet
+
+Use [the demonstration guide](client/DEMONSTRATION-2026-10-10.md) for a repeatable
+8–10 minute meeting and explicit acceptance record. The bounded 2026-10-10 source
+search recovered no complete rules; see [the evidence](verification/SOURCE-RECOVERY-2026-10-10.md).
+A [precise request](client/RULE-SOURCE-REQUEST.md) is prepared but not sent.
+The public regulator routing contact was verified; the document custodian is not.
+Next session: check this documentation PR/CI, then record client feedback or act
+on a new source lead. Do not repeat the same blocked searches.
+
 ## Following packet: authoritative rule acquisition and extraction
 
 The old content-host links are blocked for the owner; do not ask him to retry or

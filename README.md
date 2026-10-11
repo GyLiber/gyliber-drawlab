@@ -96,6 +96,8 @@ execute arbitrary imported code.
 
 ## Project records
 
+- [Client demonstration and progress evidence](docs/client/DEMONSTRATION-2026-10-10.md)
+
 - [Remaining next steps and batch checkpoints](docs/NEXT-STEPS.md)
 - [Design baseline v1.0.0](docs/design-v1.0.0.md) — proposal, not completion claim.
 - [Actual preview decisions](docs/architecture/ADR-0002-preview-and-record-contract.md)
