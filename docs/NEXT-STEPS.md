@@ -22,7 +22,8 @@ Never import branch/version markers from another repo.
 ## Active packet: alpha.3 match explorer
 
 PR #11 documentation is merged at 7d561a7236b89cf113dd98c194d30ee1e03addf9.
-Branch: feat/match-probability-explorer. See [candidate demonstration](client/MATCH-EXPLORER-ALPHA-3.md).
+Branch: feat/match-probability-explorer; PR #12.
+See [candidate verification](verification/ALPHA-3-CANDIDATE.md) and [candidate demonstration](client/MATCH-EXPLORER-ALPHA-3.md).
 The feature exposes existing core mathematics in the browser; no source-rule search
 or new official profile is part of this packet. Preserve the approved mint/slate palette.
 

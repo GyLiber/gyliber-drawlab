@@ -55,6 +55,8 @@ type MatchProbability = {
 };
 function renderDistribution(p: Profile) {
   const rows = JSON.parse(match_distribution_json(p.id)) as MatchProbability[];
+  const first = rows[0];
+  if (!first) throw new Error("Empty match distribution");
   const fragment = document.createDocumentFragment();
   for (const row of rows) {
     const tr = document.createElement("tr");
@@ -91,7 +93,7 @@ function renderDistribution(p: Profile) {
     "Exact total: " +
     rows.reduce((sum, row) => sum + BigInt(row.numerator), 0n) +
     " / " +
-    rows[0].denominator +
+    first.denominator +
     " = 1";
 }
 function refresh() {
