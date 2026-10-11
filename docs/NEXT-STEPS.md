@@ -1,7 +1,8 @@
 # DrawLab remaining work and resumption
 
-Updated 2026-10-10. Client: Gyile / GyLiber.
-Current software: 0.1.0-alpha.2 laboratory preview, not complete official-game 0.1.0.
+Updated 2026-10-11. Client: Gyile / GyLiber.
+Hosted software: 0.1.0-alpha.2. Candidate: 0.1.0-alpha.3 match explorer.
+Neither is complete official-game 0.1.0.
 Deployment record: docs/verification/HOSTED-PREVIEW-2026-10-09.md.
 Render reports https://gyliber-drawlab.onrender.com live at commit 0a970a0.
 Release-fix review: https://github.com/GyLiber/gyliber-drawlab/pull/8 (merged).
@@ -18,7 +19,25 @@ Never import branch/version markers from another repo.
 4. Select one packet below, finish its verification and record the next checkpoint.
 5. Stop; wait for continue before beginning another packet.
 
-## Next boundary: client review of the hosted preview
+## Active packet: alpha.3 match explorer
+
+PR #11 documentation is merged at 7d561a7236b89cf113dd98c194d30ee1e03addf9.
+Branch: feat/match-probability-explorer. See [candidate demonstration](client/MATCH-EXPLORER-ALPHA-3.md).
+The feature exposes existing core mathematics in the browser; no source-rule search
+or new official profile is part of this packet. Preserve the approved mint/slate palette.
+
+Next actions, in order:
+1. Inspect candidate PR checks and fix failures within this feature packet.
+2. Merge only after required checks pass; deploy from the gated main revision to
+   the existing Render static site in My Workspace, with no new paid resources.
+3. Verify exact build identity, model switching, explorer layout and existing
+   generation/export/import on the live site. Record observed results and limits.
+4. Obtain client acceptance; only then prepare the alpha.3 tag and release artifacts
+   under the release runbook. Do not claim stable 0.1.0 or a published release early.
+5. Continue official-rule intake when a new source is supplied; the existing
+   request remains unsent. Do not repeat blocked retrievals.
+
+## Client review of the hosted alpha.2 preview
 
 Render reports the static preview live, with exact deployed SHA and successful
 GitHub CI recorded in verification/HOSTED-PREVIEW-2026-10-09.md. There is no

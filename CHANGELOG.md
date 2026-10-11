@@ -1,12 +1,21 @@
 # Changelog
 
+## 0.1.0-alpha.3 — candidate, unreleased
+
+- Browser main-match probability explorer backed by the existing Rust hypergeometric calculation.
+- Exact unreduced fractions and total, approximate visual bars/percentages, counting explanation.
+- Main-only semantics explicit for bonus and independent-extra models.
+- Reference-count, model-switching and mobile-layout regression coverage.
+- Records remain version-specific; alpha.2 exports require the alpha.2 verifier.
+- No new dependencies, official profiles, certification or stable release claim.
+
 ## 0.1.0-alpha.2 — hosted laboratory preview
 
 - Render static-site Blueprint with response security headers and manual deploys.
 - Shared CI/provider build script and public version/commit build identity.
 - Browser test checks identity against the engine and checkout.
 - Render reported the built static preview live on 2026-10-09 at commit `0a970a0`;
-  direct public HTTP/header checks and client live-browser acceptance remain outstanding.
+  scoped public HTTP/header and desktop checks passed on 2026-10-10; client acceptance remains outstanding.
 - Isolated writable Rustup/Cargo binaries to support Render's read-only system toolchains.
 - Records remain version-specific: alpha.1 exports need alpha.1's verifier.
 - No official-game enablement, independent security certification or stable release tag.
