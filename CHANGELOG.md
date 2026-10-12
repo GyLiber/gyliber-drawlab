@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.2.0-alpha.1 — exact probability analysis
+
+- Main-only cumulative probability calculator in Rust, WASM, browser and CLI.
+- Exact probability CSV export including exactly/at-least events and model/version identity.
+- Independent enumeration fixtures, boundary rejection and browser/CLI comparison tests.
+- Tested browser/Linux packages, SHA-256 manifest and CI-gated prerelease publication.
+- Version-specific records; no official-game enablement or certification claim.
+
+
 ## 0.1.0-alpha.3 — candidate, unreleased
 
 - Browser main-match probability explorer backed by the existing Rust hypergeometric calculation.

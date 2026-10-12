@@ -3,8 +3,8 @@
 A mathematical lottery laboratory for **Gyile / GyLiber**.
 Unbiased generation, exact combinatorics, inspectable records.
 
-**Candidate version: 0.1.0-alpha.3 — laboratory preview, not stable 0.1.0.**
-The hosted site remains alpha.2 until the candidate passes deployment verification.
+**Candidate version: 0.2.0-alpha.1 — laboratory preview, not stable 0.1.0.**
+The previous hosted preview is alpha.3; deployment evidence determines the live revision.
 No official game profile is enabled. This tool does not sell tickets, publish
 official results, predict draws or promise winnings.
 
@@ -16,6 +16,7 @@ official results, predict draws or promise winnings.
 - Fresh OS/Web Crypto randomness, unbiased bounded sampling, no insecure fallback.
 - 1–100 independent boards, exact match probabilities and CLI main-match tables.
 - Browser main-match explorer: exact fractions, visual probabilities and a counting explanation.
+- Cumulative main-match calculator and exact probability CSV export, with native CLI support.
 - JSON records with model digests; CLI/browser validation; browser text/CSV export.
 - Visible, disabled ITHUBA candidates until full official rules are verified.
 
@@ -34,6 +35,7 @@ file selects Rust 1.98.1. From the repository root:
     cargo run -p drawlab-cli --locked -- generate --profile lab-5of36 --boards 2
     cargo run -p drawlab-cli --locked -- simulate-draw --profile lab-6of58 --format text
     cargo run -p drawlab-cli --locked -- odds --profile lab-5of50-20
+    cargo run -p drawlab-cli --locked -- at-least --profile lab-5of36 --matches 3
 
 Export and check:
 
@@ -98,6 +100,8 @@ not silent reinterpretations of ball-based models. Do not add plugins that can
 execute arbitrary imported code.
 
 ## Project records
+
+- [v0.2.0-alpha.1 release notes and demonstration](docs/releases/v0.2.0-alpha.1.md)
 
 - [Client demonstration and progress evidence](docs/client/DEMONSTRATION-2026-10-10.md)
 
