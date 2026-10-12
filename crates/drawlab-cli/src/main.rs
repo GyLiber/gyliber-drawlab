@@ -1,5 +1,7 @@
 use clap::{Parser, Subcommand, ValueEnum};
-use drawlab_core::{MAX_RECORD_BYTES, Mode, generate, match_distribution, odds, profiles, verify};
+use drawlab_core::{
+    MAX_RECORD_BYTES, Mode, at_least_matches, generate, match_distribution, odds, profiles, verify,
+};
 use std::{
     fs::File,
     io::{self, Read, Write},
@@ -47,6 +49,13 @@ enum Command {
         #[arg(long)]
         profile: String,
     },
+    /// Exact chance of at least N main matches in one independent draw.
+    AtLeast {
+        #[arg(long)]
+        profile: String,
+        #[arg(long)]
+        matches: u8,
+    },
     /// Check structure and mathematics, not authenticity, timestamps or randomness.
     Verify { file: PathBuf },
 }
@@ -92,6 +101,15 @@ fn run(cli: Cli) -> Result<String, Box<dyn std::error::Error>> {
             Ok(serde_json::to_string_pretty(
                 &serde_json::json!({"profile":p.id,"exact_match":odds(&p)?,"main_matches":match_distribution(&p)?}),
             )?)
+        }
+        Command::AtLeast { profile, matches } => {
+            let p = profiles()?
+                .into_iter()
+                .find(|p| p.id == profile)
+                .ok_or("UNKNOWN_PROFILE")?;
+            Ok(serde_json::to_string_pretty(&at_least_matches(
+                &p, matches,
+            )?)?)
         }
         Command::Verify { file } => {
             let mut bytes = Vec::new();

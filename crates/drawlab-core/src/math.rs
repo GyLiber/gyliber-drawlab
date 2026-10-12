@@ -60,9 +60,61 @@ pub fn match_distribution(p: &Profile) -> Result<Vec<MatchProbability>, Error> {
         })
         .collect()
 }
+/// Exact main-only tail probability for one fixed selection and independent draw.
+pub fn at_least_matches(p: &Profile, minimum: u8) -> Result<Odds, Error> {
+    p.enabled()?;
+    if minimum > p.pick {
+        return Err(Error("INVALID_THRESHOLD: exceeds selection size"));
+    }
+    let mut numerator = 0u128;
+    for r in minimum..=p.pick {
+        numerator += u128::from(combinations(p.pick, r)?)
+            * u128::from(combinations(p.pool - p.pick, p.pick - r)?);
+    }
+    Ok(Odds {
+        numerator: numerator.to_string(),
+        denominator: combinations(p.pool, p.pick)?.to_string(),
+        explanation: "At least the requested number of main matches in one independent draw. Extra and bonus balls excluded; not a prize probability.",
+    })
+}
 #[cfg(test)]
 mod tests {
     use super::*;
+    #[test]
+    fn tail_probabilities_match_small_exhaustive_oracle_and_boundaries() {
+        let mut p = crate::profiles()
+            .unwrap()
+            .into_iter()
+            .find(|p| p.id == "lab-5of36")
+            .unwrap();
+        assert_eq!(at_least_matches(&p, 3).unwrap().numerator, "4806");
+        assert_eq!(at_least_matches(&p, 0).unwrap().numerator, "376992");
+        assert_eq!(at_least_matches(&p, 5).unwrap().numerator, "1");
+        assert!(at_least_matches(&p, 6).is_err());
+        p.pool = 5;
+        p.pick = 3;
+        // Independently enumerate every 3-subset of 1..=5 against {1,2,3}.
+        let mut counts = [0u64; 4];
+        for a in 1..=5 {
+            for b in a + 1..=5 {
+                for c in b + 1..=5 {
+                    let matched = [a, b, c].iter().filter(|&&n| n <= 3).count();
+                    for (threshold, count) in counts.iter_mut().enumerate() {
+                        if matched >= threshold {
+                            *count += 1;
+                        }
+                    }
+                }
+            }
+        }
+        for (minimum, count) in counts.into_iter().enumerate() {
+            let result = at_least_matches(&p, minimum as u8).unwrap();
+            assert_eq!(result.numerator, count.to_string());
+            assert_eq!(result.denominator, "10");
+        }
+        p.status = crate::Status::Unverified;
+        assert!(at_least_matches(&p, 0).is_err());
+    }
     #[test]
     fn five_of_36_match_reference_counts_and_disabled_profiles() {
         let profiles = crate::profiles().unwrap();

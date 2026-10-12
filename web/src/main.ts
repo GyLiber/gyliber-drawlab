@@ -5,6 +5,7 @@ import init, {
   verify_json,
   odds_json,
   match_distribution_json,
+  at_least_json,
   version,
 } from "../pkg/drawlab_wasm.js";
 
@@ -96,11 +97,76 @@ function renderDistribution(p: Profile) {
     first.denominator +
     " = 1";
 }
+function refreshThreshold() {
+  const threshold = el<HTMLSelectElement>("minimum-match");
+  const p = profiles.find((item) => item.id === select.value);
+  if (!p) return;
+  try {
+    const result = JSON.parse(at_least_json(p.id, Number(threshold.value))) as {
+      numerator: string;
+      denominator: string;
+    };
+    el("threshold-result").textContent =
+      "At least " +
+      threshold.value +
+      " main matches: " +
+      result.numerator +
+      " / " +
+      result.denominator;
+  } catch (error) {
+    el("threshold-result").textContent = String(error);
+  }
+}
+el("minimum-match").addEventListener("change", refreshThreshold);
+el("export-probabilities").addEventListener("click", () => {
+  const p = profiles.find((item) => item.id === select.value);
+  if (!p) return;
+  const rows = JSON.parse(match_distribution_json(p.id)) as MatchProbability[];
+  const csv = [
+    "classification,software_version,profile,event,main_matches,numerator,denominator",
+  ];
+  for (const row of rows) {
+    const tail = JSON.parse(at_least_json(p.id, row.matches)) as {
+      numerator: string;
+      denominator: string;
+    };
+    for (const [event, numerator] of [
+      ["exactly", row.numerator],
+      ["at_least", tail.numerator],
+    ]) {
+      csv.push(
+        [
+          "laboratory",
+          version(),
+          p.id,
+          event,
+          row.matches,
+          numerator,
+          row.denominator,
+        ].join(","),
+      );
+    }
+  }
+  download(csv.join("\r\n"), "text/csv", "probabilities.csv");
+});
 function refresh() {
   clearOutput();
   const p = profiles.find((p) => p.id === select.value);
   if (!p) return;
   renderDistribution(p);
+  const threshold = el<HTMLSelectElement>("minimum-match");
+  const previous = threshold.value === "" ? 3 : Number(threshold.value);
+  threshold.replaceChildren();
+  for (let r = 0; r <= p.pick; r++) {
+    const option = document.createElement("option");
+    option.value = String(r);
+    option.textContent = String(r);
+    threshold.append(option);
+  }
+  threshold.value = String(Math.min(previous, p.pick));
+  threshold.disabled = false;
+  el<HTMLButtonElement>("export-probabilities").disabled = false;
+  refreshThreshold();
   const o = JSON.parse(odds_json(p.id)) as { denominator: string };
   el("odds").textContent =
     "1 in " + BigInt(o.denominator).toLocaleString("en-ZA");
