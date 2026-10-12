@@ -53,6 +53,14 @@ jobs:
         run: |
           npx playwright install --with-deps chromium
           npm test
+      - name: Package tested release artifacts
+        run: bash scripts/package-release.sh
+      - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7
+        with:
+          name: drawlab-release-bundle
+          path: release-assets/
+          if-no-files-found: error
+          retention-days: 14
       - uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7
         if: success()
         with:
@@ -83,3 +91,24 @@ jobs:
       - run: cargo audit
       - run: npm --prefix web ci --ignore-scripts
       - run: npm --prefix web audit --audit-level=high
+
+  publish:
+    name: Publish reviewed laboratory prerelease
+    needs: [verify, audit]
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    permissions:
+      contents: write
+      actions: read
+    concurrency:
+      group: drawlab-release-publication
+      cancel-in-progress: false
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          persist-credentials: false
+      - name: Publish only reviewed deployment intent
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: bash scripts/publish-release.sh

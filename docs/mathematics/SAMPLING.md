@@ -51,3 +51,15 @@ combination oracle. Tests also exercise rejection tails, empty entropy streams,
 retry exhaustion, bonus ordering, overlapping independent pools, exact counts
 and hypergeometric normalization. Real entropy smoke tests check invariants, not
 statistical significance. Passing frequency tests would not prove security.
+
+## Cumulative main matches (v0.2)
+
+For fixed selection S and independent uniform draw D, both k-subsets of n,
+R = |S ∩ D|. For 0 <= t <= k,
+P(R >= t) = sum[r=t..k] C(k,r)C(n-k,k-r) / C(n,k).
+The events R=r are disjoint, so addition is exact. At t=0 the numerator equals
+the denominator; at t=k it is 1. A threshold greater than k is rejected.
+This event ignores extra/bonus balls and describes one selection/draw pair.
+It is not a probability across all boards or a prize-winning probability.
+Reference: for 5/36 and t=3, numerator = 4650 + 155 + 1 = 4806.
+Tests independently enumerate 3-subsets of a 5-element pool and compare all tails.

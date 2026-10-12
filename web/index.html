@@ -129,6 +129,19 @@
             This is not a prize table or a prediction. Board count and operation
             do not change this distribution.
           </p>
+          <label for="minimum-match">Minimum main matches</label>
+          <select id="minimum-match" disabled></select>
+          <p id="threshold-result" role="status" aria-live="polite">
+            Waiting for the mathematical engine.
+          </p>
+          <p class="hint">
+            The threshold adds the exact probabilities from that count through
+            all main numbers. It applies to one selection and one draw, not all
+            generated boards.
+          </p>
+          <button id="export-probabilities" class="secondary" disabled>
+            Export probability table CSV
+          </button>
           <div
             class="match-table-wrap"
             role="region"

@@ -1,101 +1,42 @@
-# DrawLab remaining work and resumption
+# DrawLab release status and next actions
 
-Updated 2026-10-11. Client: Gyile / GyLiber.
-Hosted software: 0.1.0-alpha.2. Candidate: 0.1.0-alpha.3 match explorer.
-Neither is complete official-game 0.1.0.
-Deployment record: docs/verification/HOSTED-PREVIEW-2026-10-09.md.
-Render reports https://gyliber-drawlab.onrender.com live at commit 0a970a0.
-Release-fix review: https://github.com/GyLiber/gyliber-drawlab/pull/8 (merged).
-No current feature branch is designated here; inspect main and open PRs on resumption.
-Never import branch/version markers from another repo.
+Updated 2026-10-12. Client: Gyile / GyLiber.
 
-## Resume safely
+## Current delivery
 
-1. Read the remote branch/PR state, recent commits and local working-tree status.
-2. Read this file, coverage.md and the latest verification record. Check for new
-   owner-supplied sources before repeating any retrieval attempt.
-3. Verify the current head's CI and actual repository protections. Preserve local
-   changes; do not force-push or reset away work after an interrupted session.
-4. Select one packet below, finish its verification and record the next checkpoint.
-5. Stop; wait for continue before beginning another packet.
+v0.2.0-alpha.1 adds exact cumulative main-match probabilities across Rust,
+CLI and browser, plus probability CSV and checksum-indexed release packages.
+Previous live revision: 25b8e342c3102c19d57e847c9b0a4b2c0857a67e
+(0.1.0-alpha.3). See verification/LIVE-ALPHA-3-2026-10-11.md.
+New-version publication is in progress; consult GitHub release state.
 
-## Active packet: alpha.3 match explorer
+Gyile authorized autonomous development, deployment and the next minor release
+on 2026-10-12, suspending stop/continue checkpoints for this run. This is release
+authorization, not evidence of manual client acceptance. Preserve the mint/slate
+palette and keep unsupported official profiles disabled.
 
-PR #11 documentation is merged at 7d561a7236b89cf113dd98c194d30ee1e03addf9.
-Branch: feat/match-probability-explorer; PR #12.
-See [candidate verification](verification/ALPHA-3-CANDIDATE.md) and [candidate demonstration](client/MATCH-EXPLORER-ALPHA-3.md).
-The feature exposes existing core mathematics in the browser; no source-rule search
-or new official profile is part of this packet. Preserve the approved mint/slate palette.
+## Finish this release
 
-Next actions, in order:
-1. Inspect candidate PR checks and fix failures within this feature packet.
-2. Merge only after required checks pass; deploy from the gated main revision to
-   the existing Render static site in My Workspace, with no new paid resources.
-3. Verify exact build identity, model switching, explorer layout and existing
-   generation/export/import on the live site. Record observed results and limits.
-4. Obtain client acceptance; only then prepare the alpha.3 tag and release artifacts
-   under the release runbook. Do not claim stable 0.1.0 or a published release early.
-5. Continue official-rule intake when a new source is supplied; the existing
-   request remains unsent. Do not repeat blocked retrievals.
+1. Pass required PR CI and audits; merge without bypassing protections.
+2. Deploy gated main to the existing Render site in My Workspace.
+3. Verify live identity, thresholds, CSV and existing browser workflows.
+4. Commit live evidence and release-intent.json through a checked PR.
+5. Main CI publishes tested packages at the exact CI commit as a prerelease.
+   Verify public release, tag and asset inventory.
 
-## Client review of the hosted alpha.2 preview
+## Following work
 
-Render reports the static preview live, with exact deployed SHA and successful
-GitHub CI recorded in verification/HOSTED-PREVIEW-2026-10-09.md. There is no
-need to recreate the service or redeploy the same commit. Public HTTPS, exact
-build identity, response security headers, live engine load and desktop
-generate/export/import/invalid-record checks passed on 2026-10-10; see
-verification/LIVE-BROWSER-2026-10-10.md for the tested models and limits.
-Gyile now reviews the preview and accepts it or reports a specific defect.
-Live mobile acceptance has not been run; prior automated mobile checks are
-separate evidence. Do not equate developer smoke tests with client acceptance
-or label this stable 0.1.0. Stop at each completed batch checkpoint.
+1. Collect client feedback using the demonstration in the release notes.
+2. Obtain authoritative complete game rules. The prepared request remains unsent.
+   Do not retry the blocked host or weaken TLS. Record provenance, digest,
+   edition, applicability and section references for every new source.
+3. Implement one evidenced game family with conformance fixtures, then expand.
+   Do not label generic models as official games or claim all-game support.
+4. Review dependency PRs separately from the release marker.
+5. Remove the old release intent before a new version; update compatibility
+   documentation. Never replace published tags or assets.
 
-## Client meeting and source request packet
-
-Use [the demonstration guide](client/DEMONSTRATION-2026-10-10.md) for a repeatable
-8–10 minute meeting and explicit acceptance record. The bounded 2026-10-10 source
-search recovered no complete rules; see [the evidence](verification/SOURCE-RECOVERY-2026-10-10.md).
-A [precise request](client/RULE-SOURCE-REQUEST.md) is prepared but not sent.
-The public regulator routing contact was verified; the document custodian is not.
-Next session: check this documentation PR/CI, then record client feedback or act
-on a new source lead. Do not repeat the same blocked searches.
-
-## Following packet: authoritative rule acquisition and extraction
-
-The old content-host links are blocked for the owner; do not ask him to retry or
-bypass security. No further manual source retry is requested. Seek a working
-authoritative publication or a lawfully supplied operator/regulator copy in a
-bounded search. If unavailable, prepare a precise document request for Gyile's
-review, with the recipient independently verified; do not send messages without
-explicit authorization. Stop at that boundary instead of inventing game rules.
-
-For any recovered document, record provenance, file digest, edition, applicability
-and page/section references. Distinguish historical ITHUBA from current rules.
-Do not publish entire third-party manuals without permission. Deliver a compact
-conformance table covering main pools, extra pools, replacement, selection versus
-draw behavior and PLUS relationships. Clearly mark unresolved clauses.
-
-## Later packets, each separately authorized by continue
-
-1. Implement the first fully evidenced game family with conformance fixtures and
-   CLI/browser demonstrations. Keep unsupported profiles disabled. Extend family
-   by family; reconcile the complete catalogue and non-ball product scope before
-   claiming all-game coverage.
-2. Complete remaining stable-release gates from runbooks/RELEASE.md and ALPHA-1.md:
-   record compatibility/metadata, further correctness/security evidence,
-   independent review and client acceptance. Record gaps, not blanket certification.
-3. Prepare an accepted versioned client release after the remaining gates pass.
-   No stable tag or release exists. Record hosting status only after live checks.
-
-## Completed owner actions and current blocker
-
-Main ruleset was independently verified active on 2026-10-08. Vulnerability
-reporting and account protection were reported complete by the owner. See
-verification/SOURCE-RECOVERY-2026-10-08.md for evidence boundaries.
-The stable 0.1.0 blocker is authoritative full game-rule evidence (plus
-conformance/review/acceptance), not compute capacity or an API account.
-The immediate alpha.2 finishing gate is client acceptance; scoped desktop
-HTTP/browser verification is complete. Avoid repeating passed checks without
-a changed deployment or specific remaining risk.
-Preserve the working laboratory preview.
+Resume by inspecting main, PRs, releases, live identity and local changes.
+Preserve interrupted work. Normal bounded checkpoints resume after this release
+unless Gyile directs otherwise. Stable gates still require verified rules,
+conformance, independent review and explicit client acceptance.

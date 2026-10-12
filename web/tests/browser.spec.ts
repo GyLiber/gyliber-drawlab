@@ -175,3 +175,63 @@ test("match explorer preserves exact counts and excludes extra-ball events", asy
     fullPage: true,
   });
 });
+
+test("tail calculator and CSV expose exact main-only probabilities", async ({
+  page,
+}, info) => {
+  await page.goto("/");
+  await expect(page.locator("#minimum-match")).toBeEnabled();
+  await expect(page.locator("#threshold-result")).toHaveText(
+    "At least 3 main matches: 4806 / 376992",
+  );
+  await page.locator("#minimum-match").selectOption("0");
+  await expect(page.locator("#threshold-result")).toHaveText(
+    "At least 0 main matches: 376992 / 376992",
+  );
+  await page.locator("#profile").selectOption("lab-6of58");
+  await page.locator("#minimum-match").selectOption("6");
+  await expect(page.locator("#threshold-result")).toHaveText(
+    "At least 6 main matches: 1 / 40475358",
+  );
+  await page.locator("#profile").selectOption("lab-5of36");
+  await expect(page.locator("#minimum-match")).toHaveValue("5");
+  const pending = page.waitForEvent("download");
+  await page
+    .getByRole("button", { name: "Export probability table CSV" })
+    .click();
+  const download = await pending;
+  const path = info.outputPath("probabilities.csv");
+  await download.saveAs(path);
+  const csv = readFileSync(path, "utf8");
+  const lines = csv.split("\r\n");
+  expect(lines).toHaveLength(13);
+  expect(lines[0]).toBe(
+    "classification,software_version,profile,event,main_matches,numerator,denominator",
+  );
+  expect(
+    lines.some((line) => line.endsWith(",lab-5of36,at_least,3,4806,376992")),
+  ).toBe(true);
+  expect(
+    lines.some((line) => line.endsWith(",lab-5of36,exactly,3,4650,376992")),
+  ).toBe(true);
+  const cli = process.env.DRAWLAB_BIN || "../target/debug/drawlab";
+  const result = JSON.parse(
+    execFileSync(
+      cli,
+      ["at-least", "--profile", "lab-5of36", "--matches", "3"],
+      { encoding: "utf8" },
+    ),
+  );
+  expect(result.numerator).toBe("4806");
+  await page.setViewportSize({ width: 390, height: 844 });
+  expect(
+    await page.evaluate(
+      () => document.documentElement.scrollWidth <= innerWidth,
+    ),
+  ).toBe(true);
+  await page.locator("#minimum-match").scrollIntoViewIfNeeded();
+  await page.screenshot({
+    path: "../test-results/screenshots/probability-analysis-mobile.png",
+    fullPage: true,
+  });
+});
