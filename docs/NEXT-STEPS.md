@@ -6,23 +6,23 @@ Updated 2026-10-12. Client: Gyile / GyLiber.
 
 v0.2.0-alpha.1 adds exact cumulative main-match probabilities across Rust,
 CLI and browser, plus probability CSV and checksum-indexed release packages.
-Previous live revision: 25b8e342c3102c19d57e847c9b0a4b2c0857a67e
-(0.1.0-alpha.3). See verification/LIVE-ALPHA-3-2026-10-11.md.
-New-version publication is in progress; consult GitHub release state.
+Live source: ff89c98216e7ef90d506c6c9eff6583e35fa2c6f.
+See [live evidence](verification/V0.2-LIVE-2026-10-12.md) and
+[release notes](releases/v0.2.0-alpha.1.md).
+The reviewed release marker enables gated publication; the public GitHub release
+records the final tag SHA and package inventory. Do not republish this version.
 
 Gyile authorized autonomous development, deployment and the next minor release
 on 2026-10-12, suspending stop/continue checkpoints for this run. This is release
 authorization, not evidence of manual client acceptance. Preserve the mint/slate
 palette and keep unsupported official profiles disabled.
 
-## Finish this release
+## Publication verification
 
-1. Pass required PR CI and audits; merge without bypassing protections.
-2. Deploy gated main to the existing Render site in My Workspace.
-3. Verify live identity, thresholds, CSV and existing browser workflows.
-4. Commit live evidence and release-intent.json through a checked PR.
-5. Main CI publishes tested packages at the exact CI commit as a prerelease.
-   Verify public release, tag and asset inventory.
+The release-marker PR must pass both required checks before merge. Main CI then
+publishes v0.2.0-alpha.1 automatically. Confirm the public prerelease, exact tag
+commit and five assets (two archives, notes, license and checksums). If interrupted,
+inspect the release and CI before retrying; never overwrite a tag or public asset.
 
 ## Following work
 

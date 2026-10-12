@@ -3,8 +3,9 @@
 A mathematical lottery laboratory for **Gyile / GyLiber**.
 Unbiased generation, exact combinatorics, inspectable records.
 
-**Candidate version: 0.2.0-alpha.1 — laboratory preview, not stable 0.1.0.**
-The previous hosted preview is alpha.3; deployment evidence determines the live revision.
+**Hosted version: 0.2.0-alpha.1 — laboratory prerelease, not a stable official-game release.**
+[Release packages](https://github.com/GyLiber/gyliber-drawlab/releases/tag/v0.2.0-alpha.1)
+are published by gated CI after the reviewed release marker is merged.
 No official game profile is enabled. This tool does not sell tickets, publish
 official results, predict draws or promise winnings.
 
@@ -58,13 +59,12 @@ downloads need internet. Generated selections never leave the browser.
 Open http://127.0.0.1:4173. Use production preview for the tested CSP behavior.
 Do not open index.html through file://. No account, database, VM or paid service
 is needed. The [Render-hosted laboratory preview](https://gyliber-drawlab.onrender.com)
-was reported live by Render on 2026-10-09 at deployed commit `0a970a0`.
-HTTPS/header and scoped desktop browser checks passed on 2026-10-10; see the
-[live verification record](docs/verification/LIVE-BROWSER-2026-10-10.md).
-Client acceptance remains outstanding. The alpha.3 candidate adds the
-[match explorer](docs/client/MATCH-EXPLORER-ALPHA-3.md); this is not yet a live-deployment claim.
-See [hosting](docs/runbooks/HOSTING.md) and [observed deployment evidence](docs/verification/HOSTED-PREVIEW-2026-10-09.md). Exported records require their matching version's
-verifier; alpha.1 records are not accepted by alpha.2; alpha.3 likewise requires alpha.3 records.
+serves the latest verified laboratory deployment. See the current
+[live verification record](docs/verification/V0.2-LIVE-2026-10-12.md) for its
+exact commit and observations. Manual client acceptance remains distinct from
+owner authorization to publish this prerelease. See [hosting](docs/runbooks/HOSTING.md).
+Exported records require their matching version's verifier; preserve older records
+with the corresponding earlier software.
 
 ## Verification
 
@@ -78,7 +78,8 @@ verifier; alpha.1 records are not accepted by alpha.2; alpha.3 likewise requires
     npm test
 
 Separately run cargo-audit 0.22.2 and npm audit. CI reproduces these checks with
-read-only permissions and pinned action commits. See
+read-only verification permissions and pinned action commits. The main-only
+release job has narrowly scoped publication permissions; see the release runbook. See
 [verification record](docs/verification/ALPHA-1.md) for actual observed results,
 not merely intended checks.
 
