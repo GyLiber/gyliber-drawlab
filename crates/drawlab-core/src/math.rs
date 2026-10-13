@@ -112,7 +112,11 @@ mod tests {
     use super::*;
     #[test]
     fn moments_match_independent_enumeration_and_degenerate_boundary() {
-        let mut p = crate::profiles().unwrap().into_iter().find(|p| p.id == "lab-5of36").unwrap();
+        let mut p = crate::profiles()
+            .unwrap()
+            .into_iter()
+            .find(|p| p.id == "lab-5of36")
+            .unwrap();
         let moments = match_moments(&p).unwrap();
         assert_eq!(moments.expected_numerator, "25");
         assert_eq!(moments.expected_denominator, "36");
@@ -126,9 +130,9 @@ mod tests {
         for a in 1..=5 {
             for b in a + 1..=5 {
                 for c in b + 1..=5 {
-                    let x = [a,b,c].iter().filter(|&&i| i <= 3).count() as u128;
+                    let x = [a, b, c].iter().filter(|&&i| i <= 3).count() as u128;
                     sum += x;
-                    sum_squares += x*x;
+                    sum_squares += x * x;
                     count += 1;
                 }
             }
