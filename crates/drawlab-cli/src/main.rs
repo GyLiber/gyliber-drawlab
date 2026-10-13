@@ -1,6 +1,6 @@
 use clap::{Parser, Subcommand, ValueEnum};
 use drawlab_core::{
-    MAX_RECORD_BYTES, Mode, at_least_matches, generate, match_distribution, odds, profiles, verify,
+    MAX_RECORD_BYTES, Mode, at_least_matches, generate, match_distribution, match_moments, odds, profiles, verify,
 };
 use std::{
     fs::File,
@@ -56,6 +56,11 @@ enum Command {
         #[arg(long)]
         matches: u8,
     },
+    /// Exact hypergeometric expectation and variance of main matches.
+    Moments {
+        #[arg(long)]
+        profile: String,
+    },
     /// Check structure and mathematics, not authenticity, timestamps or randomness.
     Verify { file: PathBuf },
 }
@@ -110,6 +115,13 @@ fn run(cli: Cli) -> Result<String, Box<dyn std::error::Error>> {
             Ok(serde_json::to_string_pretty(&at_least_matches(
                 &p, matches,
             )?)?)
+        }
+        Command::Moments { profile } => {
+            let p = profiles()?
+                .into_iter()
+                .find(|p| p.id == profile)
+                .ok_or("UNKNOWN_PROFILE")?;
+            Ok(serde_json::to_string_pretty(&match_moments(&p)?)?)
         }
         Command::Verify { file } => {
             let mut bytes = Vec::new();
