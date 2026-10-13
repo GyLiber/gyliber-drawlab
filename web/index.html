@@ -8,14 +8,14 @@
       http-equiv="Content-Security-Policy"
       content="default-src 'none'; script-src 'self' 'wasm-unsafe-eval'; style-src 'self'; connect-src 'self'; img-src 'self' data:; font-src 'self'; base-uri 'none'; form-action 'none'; object-src 'none'"
     />
-    <title>DrawLab — GyLiber</title>
+    <title>DrawLab â GyLiber</title>
     <link rel="icon" href="data:," />
   </head>
   <body>
     <div class="shell">
       <header>
         <a class="brand" href="./">GYLIBER<span> / DRAWLAB</span></a
-        ><span class="version" id="version">Loading engine…</span>
+        ><span class="version" id="version">Loading engineâ¦</span>
       </header>
       <main>
         <section class="intro">
@@ -68,12 +68,12 @@
                 required
               />
               <button id="generate" type="submit" disabled>
-                Generate selections <span aria-hidden="true">↗</span>
+                Generate selections <span aria-hidden="true">â</span>
               </button>
             </form>
             <div class="probability">
-              <span>EXACT MATCH PROBABILITY · ONE BOARD</span
-              ><strong id="odds">—</strong>
+              <span>EXACT MATCH PROBABILITY Â· ONE BOARD</span
+              ><strong id="odds">â</strong>
               <p class="hint">
                 All main numbers and any independent extra ball. This is not a
                 prize or profit estimate.
@@ -89,11 +89,11 @@
               <span class="tag" id="mode-tag">READY</span>
             </div>
             <div id="status" role="status" aria-live="polite">
-              Loading the local engine…
+              Loading the local engineâ¦
             </div>
             <div id="boards" class="boards">
               <div class="empty">
-                <span class="empty-symbol" aria-hidden="true">{ Ω }</span>
+                <span class="empty-symbol" aria-hidden="true">{ Î© }</span>
                 <h3>A sample starts here.</h3>
                 <p>
                   Choose a model and generate. Every valid combination has the
@@ -164,18 +164,24 @@
           </div>
           <p id="match-total" class="hint"></p>
           <div class="probability">
-            <span>EXACT MOMENTS · MAIN MATCHES</span>
-            <p id="match-moments" role="status" aria-live="polite">Waiting for the mathematical engine.</p>
-            <p class="hint">Expectation describes the mean match count over repeated independent uniform draws; variance describes its spread. Neither predicts a future draw.</p>
+            <span>EXACT MOMENTS Â· MAIN MATCHES</span>
+            <p id="match-moments" role="status" aria-live="polite">
+              Waiting for the mathematical engine.
+            </p>
+            <p class="hint">
+              Expectation describes the mean match count over repeated
+              independent uniform draws; variance describes its spread. Neither
+              predicts a future draw.
+            </p>
           </div>
           <details>
             <summary>Why these probabilities?</summary>
             <p>
               For a pool of n numbers, a selection of k numbers and exactly r
-              matches: P(R = r) = C(k,r) × C(n−k,k−r) / C(n,k).
+              matches: P(R = r) = C(k,r) Ã C(nâk,kâr) / C(n,k).
             </p>
             <p>
-              Choose r numbers from the selection and k−r from outside it.
+              Choose r numbers from the selection and kâr from outside it.
               C(a,b) counts unordered ways to choose b distinct items from a.
               The rows cover every possible main-match count, so their exact
               probabilities sum to 1. Fractions are exact and unreduced;
@@ -183,11 +189,45 @@
             </p>
           </details>
           <details id="sampling-research">
-            <summary>Why uniform sampling and what does the research establish?</summary>
-            <p>For n distinct numbers and k selections without replacement, a partial Fisher–Yates shuffle chooses from n, n−1, …, n−k+1 remaining positions. Each ordered sequence has probability 1 / [n(n−1)…(n−k+1)]; each unordered k-subset occurs in k! orders and has probability 1/C(n,k).</p>
-            <p>DrawLab uses operating-system or Web Crypto entropy plus bounded rejection sampling to avoid modulo bias, failing closed on unavailable entropy. Its laboratory sampling algorithm models draws; it does not certify any physical lottery apparatus or establish independence of real-world draws.</p>
-            <p>For main-match count X, E[X] = k²/n and Var(X) = k²(n−k)² / [n²(n−1)] for n &gt; 1. When n=k=1, variance is zero. These are exact model identities, not estimated frequencies.</p>
-            <p>Research guidance: NIST SP 800-90B concerns entropy sources and health testing; NIST SP 800-22 Rev. 1a explicitly warns that statistical testing does not certify a generator's security. DrawLab does not claim NIST validation or certification. <a href="https://csrc.nist.gov/pubs/sp/800/90/b/final" rel="noopener noreferrer">NIST 800-90B</a> · <a href="https://csrc.nist.gov/pubs/sp/800/22/r1/upd1/final" rel="noopener noreferrer">NIST 800-22 Rev. 1a</a>.</p>
+            <summary>
+              Why uniform sampling and what does the research establish?
+            </summary>
+            <p>
+              For n distinct numbers and k selections without replacement, a
+              partial FisherâYates shuffle chooses from n, nâ1, â¦, nâk+1
+              remaining positions. Each ordered sequence has probability 1 /
+              [n(nâ1)â¦(nâk+1)]; each unordered k-subset occurs in k! orders and
+              has probability 1/C(n,k).
+            </p>
+            <p>
+              DrawLab uses operating-system or Web Crypto entropy plus bounded
+              rejection sampling to avoid modulo bias, failing closed on
+              unavailable entropy. Its laboratory sampling algorithm models
+              draws; it does not certify any physical lottery apparatus or
+              establish independence of real-world draws.
+            </p>
+            <p>
+              For main-match count X, E[X] = kÂ²/n and Var(X) = kÂ²(nâk)Â² /
+              [nÂ²(nâ1)] for n &gt; 1. When n=k=1, variance is zero. These are
+              exact model identities, not estimated frequencies.
+            </p>
+            <p>
+              Research guidance: NIST SP 800-90B concerns entropy sources and
+              health testing; NIST SP 800-22 Rev. 1a explicitly warns that
+              statistical testing does not certify a generator's security.
+              DrawLab does not claim NIST validation or certification.
+              <a
+                href="https://csrc.nist.gov/pubs/sp/800/90/b/final"
+                rel="noopener noreferrer"
+                >NIST 800-90B</a
+              >
+              Â·
+              <a
+                href="https://csrc.nist.gov/pubs/sp/800/22/r1/upd1/final"
+                rel="noopener noreferrer"
+                >NIST 800-22 Rev. 1a</a
+              >.
+            </p>
           </details>
         </section>
         <div class="lower-grid">
@@ -223,7 +263,7 @@
       <footer>
         <a href="./build-info.json">Build identity</a>
         <span>GYLIBER / CORRECT, EXTERNALIZED WORK</span
-        ><span>Local computation · No accounts · No selection telemetry</span>
+        ><span>Local computation Â· No accounts Â· No selection telemetry</span>
       </footer>
     </div>
     <script type="module" src="/src/main.ts"></script>
