@@ -77,9 +77,75 @@ pub fn at_least_matches(p: &Profile, minimum: u8) -> Result<Odds, Error> {
         explanation: "At least the requested number of main matches in one independent draw. Extra and bonus balls excluded; not a prize probability.",
     })
 }
+
+#[derive(Debug, Serialize, PartialEq, Eq)]
+pub struct MatchMoments {
+    pub expected_numerator: String,
+    pub expected_denominator: String,
+    pub variance_numerator: String,
+    pub variance_denominator: String,
+    pub explanation: &'static str,
+}
+
+/// Hypergeometric moments for X = number of main matches against a fixed pick.
+/// Fractions remain exact and unreduced. No floating point enters the authority.
+pub fn match_moments(p: &Profile) -> Result<MatchMoments, Error> {
+    p.enabled()?;
+    let n = u128::from(p.pool);
+    let k = u128::from(p.pick);
+    // If n = 1, the only legal pick is 1 and X is identically 1.
+    let (variance_numerator, variance_denominator) = if n == 1 {
+        (0, 1)
+    } else {
+        (k * k * (n - k) * (n - k), n * n * (n - 1))
+    };
+    Ok(MatchMoments {
+        expected_numerator: (k * k).to_string(),
+        expected_denominator: n.to_string(),
+        variance_numerator: variance_numerator.to_string(),
+        variance_denominator: variance_denominator.to_string(),
+        explanation: "For a fixed k-number selection and independent uniform k-of-n draw, X is hypergeometric: E[X]=k²/n and Var(X)=k²(n-k)²/[n²(n-1)]. Main numbers only; no predictions, payouts, bonus or extra-ball events.",
+    })
+}
 #[cfg(test)]
 mod tests {
     use super::*;
+    #[test]
+    fn moments_match_independent_enumeration_and_degenerate_boundary() {
+        let mut p = crate::profiles().unwrap().into_iter().find(|p| p.id == "lab-5of36").unwrap();
+        let moments = match_moments(&p).unwrap();
+        assert_eq!(moments.expected_numerator, "25");
+        assert_eq!(moments.expected_denominator, "36");
+        assert_eq!(moments.variance_numerator, "24025");
+        assert_eq!(moments.variance_denominator, "45360");
+        p.pool = 5;
+        p.pick = 3;
+        let mut sum = 0u128;
+        let mut sum_squares = 0u128;
+        let mut count = 0u128;
+        for a in 1..=5 {
+            for b in a + 1..=5 {
+                for c in b + 1..=5 {
+                    let x = [a,b,c].iter().filter(|&&i| i <= 3).count() as u128;
+                    sum += x;
+                    sum_squares += x*x;
+                    count += 1;
+                }
+            }
+        }
+        let m = match_moments(&p).unwrap();
+        let en: u128 = m.expected_numerator.parse().unwrap();
+        let ed: u128 = m.expected_denominator.parse().unwrap();
+        let vn: u128 = m.variance_numerator.parse().unwrap();
+        let vd: u128 = m.variance_denominator.parse().unwrap();
+        assert_eq!(sum * ed, count * en);
+        assert_eq!((sum_squares * count - sum * sum) * vd, vn * count * count);
+        p.pool = 1;
+        p.pick = 1;
+        assert_eq!(match_moments(&p).unwrap().variance_numerator, "0");
+        p.status = crate::Status::Unverified;
+        assert!(match_moments(&p).is_err());
+    }
     #[test]
     fn tail_probabilities_match_small_exhaustive_oracle_and_boundaries() {
         let mut p = crate::profiles()
