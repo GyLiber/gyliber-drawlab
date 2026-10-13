@@ -236,19 +236,31 @@ test("tail calculator and CSV expose exact main-only probabilities", async ({
   });
 });
 
-test("exact moments and model explanation remain synchronized with CLI", async ({ page }) => {
+test("exact moments and model explanation remain synchronized with CLI", async ({
+  page,
+}) => {
   await page.goto("/");
   await expect(page.locator("#match-moments")).toHaveText(
     "E[X] = 25 / 36; Var(X) = 24025 / 45360",
   );
   const bin = process.env.DRAWLAB_BIN || "../target/debug/drawlab";
-  const output = JSON.parse(execFileSync(bin, ["moments", "--profile", "lab-5of36"], { encoding: "utf8" }));
+  const output = JSON.parse(
+    execFileSync(bin, ["moments", "--profile", "lab-5of36"], {
+      encoding: "utf8",
+    }),
+  );
   expect(output.expected_numerator).toBe("25");
   expect(output.variance_numerator).toBe("24025");
   await page.locator("#profile").selectOption("lab-6of58");
   await expect(page.locator("#match-moments")).toContainText("E[X] = 36 / 58");
   await page.locator("#sampling-research summary").click();
-  await expect(page.locator("#sampling-research")).toContainText("partial Fisher");
+  await expect(page.locator("#sampling-research")).toContainText(
+    "partial Fisher",
+  );
   await page.setViewportSize({ width: 390, height: 844 });
-  expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+  expect(
+    await page.evaluate(
+      () => document.documentElement.scrollWidth <= innerWidth,
+    ),
+  ).toBe(true);
 });
