@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.3.0-alpha.1 — exact moments and inspectable sampling model (candidate)
+
+- Exact hypergeometric expectation and variance for main matches, shared across core, CLI, WASM and browser.
+- Independent small-pool exhaustive enumeration oracle, degenerate-domain and disabled-profile tests.
+- Expandable uniform-without-replacement derivation and explicit statistical-testing/entropy/physical-draw limitations.
+- No change to underlying rejection sampling, record schema, game rules or official profile enablement.
+- Publication and client acceptance are not claimed until separately evidenced.
+
 ## 0.2.0-alpha.1 — exact probability analysis
 
 - Main-only cumulative probability calculator in Rust, WASM, browser and CLI.
