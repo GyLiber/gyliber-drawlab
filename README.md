@@ -3,9 +3,9 @@
 A mathematical lottery laboratory for **Gyile / GyLiber**.
 Unbiased generation, exact combinatorics, inspectable records.
 
-**Hosted version: 0.2.0-alpha.1 — laboratory prerelease, not a stable official-game release.**
-[Release packages](https://github.com/GyLiber/gyliber-drawlab/releases/tag/v0.2.0-alpha.1)
-are published by gated CI after the reviewed release marker is merged.
+**Hosted version: 0.3.0-alpha.1 — laboratory release candidate, not a stable official-game release.**
+[Prior published packages](https://github.com/GyLiber/gyliber-drawlab/releases/tag/v0.2.0-alpha.1)
+were published by gated CI; the next candidate is not published until its gates pass.
 No official game profile is enabled. This tool does not sell tickets, publish
 official results, predict draws or promise winnings.
 
@@ -18,6 +18,7 @@ official results, predict draws or promise winnings.
 - 1–100 independent boards, exact match probabilities and CLI main-match tables.
 - Browser main-match explorer: exact fractions, visual probabilities and a counting explanation.
 - Cumulative main-match calculator and exact probability CSV export, with native CLI support.
+- Exact hypergeometric mean and variance of main matches, with CLI/browser parity and inspectable sampling assumptions.
 - JSON records with model digests; CLI/browser validation; browser text/CSV export.
 - Visible, disabled ITHUBA candidates until full official rules are verified.
 
@@ -37,6 +38,7 @@ file selects Rust 1.98.1. From the repository root:
     cargo run -p drawlab-cli --locked -- simulate-draw --profile lab-6of58 --format text
     cargo run -p drawlab-cli --locked -- odds --profile lab-5of50-20
     cargo run -p drawlab-cli --locked -- at-least --profile lab-5of36 --matches 3
+    cargo run -p drawlab-cli --locked -- moments --profile lab-5of36
 
 Export and check:
 
