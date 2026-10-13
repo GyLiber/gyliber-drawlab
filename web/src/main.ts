@@ -162,8 +162,14 @@ function refresh() {
     variance_denominator: string;
   };
   el("match-moments").textContent =
-    "E[X] = " + moments.expected_numerator + " / " + moments.expected_denominator +
-    "; Var(X) = " + moments.variance_numerator + " / " + moments.variance_denominator;
+    "E[X] = " +
+    moments.expected_numerator +
+    " / " +
+    moments.expected_denominator +
+    "; Var(X) = " +
+    moments.variance_numerator +
+    " / " +
+    moments.variance_denominator;
   const threshold = el<HTMLSelectElement>("minimum-match");
   const previous = threshold.value === "" ? 3 : Number(threshold.value);
   threshold.replaceChildren();
@@ -182,12 +188,12 @@ function refresh() {
     "1 in " + BigInt(o.denominator).toLocaleString("en-ZA");
   el("profile-note").textContent =
     p.pick +
-    " distinct main numbers from 1–" +
+    " distinct main numbers from 1â" +
     p.pool +
     ". Laboratory model only.";
   const mode = new FormData(form).get("mode");
   el("generate").textContent =
-    mode === "draw" ? "Simulate draws ↗" : "Generate selections ↗";
+    mode === "draw" ? "Simulate draws â" : "Generate selections â";
   el("mode-tag").textContent = mode === "draw" ? "DRAW MODE" : "SELECTION MODE";
   setStatus("Ready. Generated boards stay on this device.");
 }
@@ -337,7 +343,7 @@ async function start() {
         select.append(option);
       } else {
         const li = document.createElement("li");
-        li.textContent = p.name + ": disabled — rules unverified";
+        li.textContent = p.name + ": disabled â rules unverified";
         el("coverage").append(li);
       }
     }
