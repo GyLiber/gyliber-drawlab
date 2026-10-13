@@ -1,6 +1,7 @@
 use clap::{Parser, Subcommand, ValueEnum};
 use drawlab_core::{
-    MAX_RECORD_BYTES, Mode, at_least_matches, generate, match_distribution, match_moments, odds, profiles, verify,
+    MAX_RECORD_BYTES, Mode, at_least_matches, generate, match_distribution, match_moments, odds,
+    profiles, verify,
 };
 use std::{
     fs::File,
