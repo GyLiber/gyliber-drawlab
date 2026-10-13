@@ -3,9 +3,9 @@
 A mathematical lottery laboratory for **Gyile / GyLiber**.
 Unbiased generation, exact combinatorics, inspectable records.
 
-**Hosted version: 0.3.0-alpha.1 — laboratory release candidate, not a stable official-game release.**
-[Prior published packages](https://github.com/GyLiber/gyliber-drawlab/releases/tag/v0.2.0-alpha.1)
-were published by gated CI; the next candidate is not published until its gates pass.
+**Hosted version: 0.3.0-alpha.1 — laboratory prerelease, not a stable official-game release.**
+[Release packages](https://github.com/GyLiber/gyliber-drawlab/releases/tag/v0.3.0-alpha.1)
+are published only after gated CI and live-identity confirmation.
 No official game profile is enabled. This tool does not sell tickets, publish
 official results, predict draws or promise winnings.
 
@@ -62,7 +62,7 @@ Open http://127.0.0.1:4173. Use production preview for the tested CSP behavior.
 Do not open index.html through file://. No account, database, VM or paid service
 is needed. The [Render-hosted laboratory preview](https://gyliber-drawlab.onrender.com)
 serves the latest verified laboratory deployment. See the current
-[live verification record](docs/verification/V0.2-LIVE-2026-10-12.md) for its
+[live verification record](docs/verification/V0.3-LIVE-2026-10-13.md) for its
 exact commit and observations. Manual client acceptance remains distinct from
 owner authorization to publish this prerelease. See [hosting](docs/runbooks/HOSTING.md).
 Exported records require their matching version's verifier; preserve older records
@@ -104,7 +104,9 @@ execute arbitrary imported code.
 
 ## Project records
 
-- [v0.2.0-alpha.1 release notes and demonstration](docs/releases/v0.2.0-alpha.1.md)
+- [v0.3.0-alpha.1 release notes and demonstration](docs/releases/v0.3.0-alpha.1.md)
+- [v0.3 verification evidence](docs/verification/V0.3-LIVE-2026-10-13.md)
+- [Prior v0.2.0-alpha.1 release](docs/releases/v0.2.0-alpha.1.md)
 
 - [Client demonstration and progress evidence](docs/client/DEMONSTRATION-2026-10-10.md)
 

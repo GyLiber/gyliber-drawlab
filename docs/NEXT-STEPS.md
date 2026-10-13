@@ -1,21 +1,22 @@
-# DrawLab next actions
+# DrawLab release status and next actions
 
-Updated 2026-10-13. Proposed v0.3.0-alpha.1 candidate: exact moments and inspectable sampling mathematics.
-Prior published prerelease: v0.2.0-alpha.1; do not republish it.
+Updated 2026-10-13. Release v0.3.0-alpha.1: exact hypergeometric moments and transparent uniform-draw sampling derivation.
 
-## Release gates for current candidate
+## Verified delivery to date
 
-1. Required protected-branch CI checks, including independent enumeration and CLI/WASM/browser parity.
-2. Review sampling derivation and clearly distinguish laboratory uniform model from unverified physical draw practice.
-3. Merge reviewed feature PR, deploy its exact main commit to existing Render service only, and inspect live identity, HTTP security headers and a valid/invalid record flow.
-4. Record observed evidence and owner publication authorization; create release intent for v0.3.0-alpha.1 pointing to verified live commit.
-5. Merge intent PR after required CI, confirm immutable published tag/assets/checksums; do not claim client acceptance or security certification without it.
+- Feature PR #15 merged at `1446ccb2b120f40d032b5c96614124e14bb445bb`.
+- Protected GitHub PR CI `38333958644`: core/browser verification and advisory audit both passed, including native and browser tests and release packages.
+- Existing Render deploy `dep-db6oulom7kps73ap50k0` for exact feature merge reported live 2026-10-13 at 01:56:48 UTC; auto-deploy remains off.
+- Reviewed release intent in PR #16 requests CI-gated publication of `v0.3.0-alpha.1`; the release's public tag and assets must be separately confirmed after that PR merges. Do not republish prior versions.
+- Direct live-site manual browser acceptance and independent security/randomness certification are **not** claimed. Consult [verification evidence](verification/V0.3-LIVE-2026-10-13.md).
 
-## Later product work
+## Next actions
 
-- Obtain complete authoritative current/historical rules, provenance and applicability before enabling any official game family; the prepared external request remains unsent.
-- Quantitative model diagnostics and visual mathematical derivations can be expanded in subsequent prereleases, without representing them as NIST validation or physical-draw certification.
-- Review dependency updates separately and preserve record-version compatibility.
-- Client demonstration and feedback; independent security and conformance review for stable release.
+1. Confirm public prerelease, exact tag commit and immutable packages with checksum evidence; published status must be determined from GitHub Release and main CI, not this document's approval intent.
+2. Gather explicit client feedback on the v0.3 browser mathematics and CLI demonstration. Acceptance is not implied by publication authorization.
+3. Obtain complete authoritative historical/current game rules. Prepared request remains unsent; do not retry blocked TLS host or weaken validation.
+4. Make a conformance table with edition/effective applicability, independently checked examples and verified provenance before enabling even one official-game family. Separate extra/bonus events and current operator coverage.
+5. Continue research-oriented mathematical transparency: independent diagnostics with declared null hypotheses, exact/reference calculations and auditable assumptions. Empirical frequencies do not certify physical lottery fairness or entropy.
+6. Review dependency changes separately, preserve version-specific records, existing security boundaries and the calm slate/mint presentation.
 
-No official catalogue support or external source message is authorized by this file.
+For the next minor cycle, remove the consumed release intent, create a focused branch and obtain current evidence. Never overwrite published tags or assets; maintain protected main checks.
