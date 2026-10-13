@@ -63,3 +63,14 @@ pub fn at_least_json(id: &str, minimum: u8) -> Result<String, JsValue> {
     serde_json::to_string(&drawlab_core::at_least_matches(&p, minimum).map_err(js_error)?)
         .map_err(js_error)
 }
+
+#[wasm_bindgen]
+pub fn match_moments_json(id: &str) -> Result<String, JsValue> {
+    let p = drawlab_core::profiles()
+        .map_err(js_error)?
+        .into_iter()
+        .find(|p| p.id == id)
+        .ok_or_else(|| js_error("UNKNOWN_PROFILE"))?;
+    serde_json::to_string(&drawlab_core::match_moments(&p).map_err(js_error)?)
+        .map_err(js_error)
+}
