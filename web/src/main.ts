@@ -6,6 +6,7 @@ import init, {
   odds_json,
   match_distribution_json,
   at_least_json,
+  match_moments_json,
   version,
 } from "../pkg/drawlab_wasm.js";
 
@@ -154,6 +155,15 @@ function refresh() {
   const p = profiles.find((p) => p.id === select.value);
   if (!p) return;
   renderDistribution(p);
+  const moments = JSON.parse(match_moments_json(p.id)) as {
+    expected_numerator: string;
+    expected_denominator: string;
+    variance_numerator: string;
+    variance_denominator: string;
+  };
+  el("match-moments").textContent =
+    "E[X] = " + moments.expected_numerator + " / " + moments.expected_denominator +
+    "; Var(X) = " + moments.variance_numerator + " / " + moments.variance_denominator;
   const threshold = el<HTMLSelectElement>("minimum-match");
   const previous = threshold.value === "" ? 3 : Number(threshold.value);
   threshold.replaceChildren();
