@@ -163,6 +163,11 @@
             </table>
           </div>
           <p id="match-total" class="hint"></p>
+          <div class="probability">
+            <span>EXACT MOMENTS · MAIN MATCHES</span>
+            <p id="match-moments" role="status" aria-live="polite">Waiting for the mathematical engine.</p>
+            <p class="hint">Expectation describes the mean match count over repeated independent uniform draws; variance describes its spread. Neither predicts a future draw.</p>
+          </div>
           <details>
             <summary>Why these probabilities?</summary>
             <p>
@@ -176,6 +181,13 @@
               probabilities sum to 1. Fractions are exact and unreduced;
               percentages are rounded to four decimal places.
             </p>
+          </details>
+          <details id="sampling-research">
+            <summary>Why uniform sampling and what does the research establish?</summary>
+            <p>For n distinct numbers and k selections without replacement, a partial Fisher–Yates shuffle chooses from n, n−1, …, n−k+1 remaining positions. Each ordered sequence has probability 1 / [n(n−1)…(n−k+1)]; each unordered k-subset occurs in k! orders and has probability 1/C(n,k).</p>
+            <p>DrawLab uses operating-system or Web Crypto entropy plus bounded rejection sampling to avoid modulo bias, failing closed on unavailable entropy. Its laboratory sampling algorithm models draws; it does not certify any physical lottery apparatus or establish independence of real-world draws.</p>
+            <p>For main-match count X, E[X] = k²/n and Var(X) = k²(n−k)² / [n²(n−1)] for n &gt; 1. When n=k=1, variance is zero. These are exact model identities, not estimated frequencies.</p>
+            <p>Research guidance: NIST SP 800-90B concerns entropy sources and health testing; NIST SP 800-22 Rev. 1a explicitly warns that statistical testing does not certify a generator's security. DrawLab does not claim NIST validation or certification. <a href="https://csrc.nist.gov/pubs/sp/800/90/b/final" rel="noopener noreferrer">NIST 800-90B</a> · <a href="https://csrc.nist.gov/pubs/sp/800/22/r1/upd1/final" rel="noopener noreferrer">NIST 800-22 Rev. 1a</a>.</p>
           </details>
         </section>
         <div class="lower-grid">
