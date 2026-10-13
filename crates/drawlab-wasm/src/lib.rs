@@ -71,6 +71,5 @@ pub fn match_moments_json(id: &str) -> Result<String, JsValue> {
         .into_iter()
         .find(|p| p.id == id)
         .ok_or_else(|| js_error("UNKNOWN_PROFILE"))?;
-    serde_json::to_string(&drawlab_core::match_moments(&p).map_err(js_error)?)
-        .map_err(js_error)
+    serde_json::to_string(&drawlab_core::match_moments(&p).map_err(js_error)?).map_err(js_error)
 }
