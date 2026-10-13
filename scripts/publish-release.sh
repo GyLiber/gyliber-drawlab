@@ -28,5 +28,5 @@ if(live.version!==intent.version || live.commit!==intent.deployed_commit || live
 JS
 gh run download "$GITHUB_RUN_ID" --repo "$GITHUB_REPOSITORY" --name drawlab-release-bundle --dir release-assets
 (cd release-assets && sha256sum -c SHA256SUMS)
-gh release create "$release_tag" release-assets/* --repo "$GITHUB_REPOSITORY" --target "$GITHUB_SHA" --title "DrawLab ${release_version} — exact probability analysis" --notes-file "docs/releases/${release_tag}.md" --prerelease --draft
+gh release create "$release_tag" release-assets/* --repo "$GITHUB_REPOSITORY" --target "$GITHUB_SHA" --title "DrawLab ${release_version} — exact moments and sampling mathematics" --notes-file "docs/releases/${release_tag}.md" --prerelease --draft
 gh release edit "$release_tag" --repo "$GITHUB_REPOSITORY" --draft=false --prerelease --latest=false
