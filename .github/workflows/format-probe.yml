@@ -1,7 +1,5 @@
 name: Temporary formatting probe
-on:
-  push:
-    branches: [feat/v0.3-moment-analysis]
+on: [push, pull_request]
 permissions:
   contents: read
 jobs:
