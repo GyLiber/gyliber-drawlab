@@ -1,6 +1,6 @@
 # Coverage and authoritative-rule evidence
 
-As of 2026-10-08. This preview does not claim current official-game accuracy.
+Source intake refreshed 2026-10-14; original coverage baseline 2026-10-08. This preview does not claim current official-game accuracy.
 The five lab profiles are mathematical definitions, not operator rule claims.
 
 | Family | Registry state | Reason / next requirement |
@@ -14,7 +14,8 @@ The five lab profiles are mathematical definitions, not operator rule claims.
 | SPORTSTAKE 4/8/13, cricket, rugby; MatchPlay 13 | Not implemented | Fixture/outcome/settlement specifications needed |
 | RAFFLE / EAZiWIN / other instant products | Not implemented | Inventory or outcome/prize specifications needed |
 
-## Located primary sources
+The October 2026 PDF-acquisition attempt and operator transition are recorded in [PDF intake 2026-10-14](verification/PDF-SOURCE-INTAKE-2026-10-14.md). No complete PDF was securely downloaded or page-verified in that attempt. ITHUBA sources are historical; current Sizekhaya rules require separate authoritative editions. Do not enable game profiles on the basis of indexed search excerpts or historical geometry. 
+\n## Located primary sources
 
 1. LOTTO 2025:
    https://content.nationallottery.co.za/images/docs/LOTTO_Game_Rules%26Regulations_10Oct25.pdf
